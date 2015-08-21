@@ -1,0 +1,224 @@
+@charset "utf-8";
+
+/* 
+	@名称: base
+	@功能: 重设浏览器默认样式
+*/
+
+/* 防止用户自定义背景颜色对网页的影响 */
+html{
+	color:#000;background:#FFFFFF;
+}
+
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+	margin:0;padding:0;
+}
+
+.bg_f5{ background-color: #F5F5F5}
+
+/* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+/* 要注意表单元素并不继承父级 font 的问题 */
+body,button,input,select,textarea{
+	font:12px/1.5 "microsoft yahei",tahoma,arial,\5b8b\4f53;
+}
+input,select,textarea{
+	font-size:100%;
+}
+
+/* 去掉各Table  cell 的边距并让其边重合 */
+table{
+	border-collapse:collapse;border-spacing:0;
+}
+
+/* IE bug fixed: th 不继承 text-align*/
+th{
+	text-align:inherit;
+}
+
+/* 去除默认边框 */
+fieldset,img{
+	border:0;
+}
+
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe{
+	display:block;
+}
+
+/* 去掉 firefox 下此元素的边框 */
+abbr,acronym{
+	border:0;font-variant:normal;
+}
+
+/* 一致的 del 样式 */
+del {
+	text-decoration:line-through;
+}
+
+address,caption,cite,code,dfn,em,th,var {
+	font-style:normal;
+	font-weight:500;
+}
+
+/* 去掉列表前的标识, li 会继承 */
+ol,ul {
+	list-style:none;
+}
+
+/* 对齐是排版最重要的因素, 别让什么都居中 */
+caption,th {
+	text-align:left;
+}
+
+/* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:500;
+}
+
+q:before,q:after {
+	content:'';
+}
+
+/* 统一上标和下标 */
+sup {
+	vertical-align:text-top;
+}
+sub {
+	vertical-align:text-bottom;
+}
+
+/* 让链接在 hover 状态下显示下划线 */
+a:hover {
+	text-decoration:underline;
+}
+
+/* 默认不显示下划线，保持页面简洁 */
+ins,a {
+	text-decoration:none;
+}
+
+/* 清理浮动 */
+.fn-clear:after {
+	visibility:hidden;
+	display:block;
+	font-size:0;
+	content:" ";
+	clear:both;
+	height:0;
+}
+.fn-clear {
+	zoom:1; /* for IE6 IE7 */
+}
+
+/* 隐藏, 通常用来与 JS 配合 */
+body .fn-hide {
+	display:none;
+}
+/* 显示, 通常用来与 JS 配合 */
+body .fn-show{
+	display:block;
+}
+
+/* 设置内联, 减少浮动带来的bug */
+.fn-left,.fn-right {
+	display:inline;
+}
+.fn-left {
+	float:left;
+}
+.fn-right {
+	float:right;
+}
+*{margin:0;padding:0;}
+html,body,div,span,ul,li,form,input,img{margin:0; padding:0; font-family: "microsoft yahei",tahoma,arial,\5b8b\4f53; border:0; outline:0; font-weight:normal; font-style:inherit; vertical-align:baseline;text-align:left;font-size:12px;  background-repeat:no-repeat;}
+a,a:link,a:visited,a:active{text-decoration:none; color:#676767;}
+a:hover{text-decoration:none; color:#0077bf;}
+a img{border:0; text-decoration:none;}
+ol,ul{list-style:none;}
+body{width:100%; color:#191418;background: #fff;}
+.l{ float:left;}
+.r{ float:right;}
+.clear{clear: both;}
+.wp{width:1048px; margin:0 auto;}
+/* 字体 */
+.font_14{font-size: 14px;}
+/* 定位 */
+.pos_relative{position: relative;}
+
+.font_sont{font-family: "microsoft yahei",tahoma,arial,\5b8b\4f53;}
+.mtop_15{margin-top: 15px;}
+.mtop_25{margin-top: 25px;}
+.mtop_30{margin-top: 30px;}
+.color_yel{color: #f16621;}
+.color_grey{color: #959595;}
+/*common top*/
+.common_topbg{background-color:#548f1e; width: 100%; height: 59px; }
+.common_logo{margin-top: 15px; margin-right: 40px;}
+.common_menu ul li{float: left; color: #f7f6f6; font-size: 18px; line-height: 59px; }
+.common_menu ul li a{ color: #f7f6f6; display: inline-block; height: 59px; padding: 0 15px; margin-right: 5px;}
+.common_menu ul li a:hover,.common_menu ul li a.common_menuon{border-bottom: 1px #fff solid;height: 58px;}
+.common_in{
+    border: 1px solid #fff;
+    background-color: #548f1e;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: #fff;
+    margin-top: 16px;
+    padding-left: 9px;
+    padding-right: 9px;
+    height: 26px;
+    line-height: 26px
+}
+.common_in img{vertical-align:middle;border-left: 1px solid #fff; padding-left: 3px; position:relative; top:-2px; right:-3px;}
+
+.common_in a{color: #fff; font-size: 13px;}
+/* foot */
+.foot_wp{background: #548f1e; width: 100%; padding-top: 60px; padding-bottom: 70px;}
+.foot_nav{width: 144px; margin-bottom: 30px;}
+.foot_nav_tit{color: #f1f0f0; font-weight: bold; letter-spacing: 1px; height: 20px;}
+.font_nav_list{line-height: 25px;}
+.font_nav_list a{color: #f1f0f0; }
+.font_nav_list a:hover{color: #fff; }
+.fico a{margin-right: 12px; margin-top: 12px; display: inline-block;}
+.foot_copy{color: #f3f2f2; line-height: 19px;}
+/* 分页样式 */
+.page_link{margin:10px auto; text-align:center;}
+.page_link a, .page_link span{display:inline-block; padding:3px 8px; border:1px solid #548f1e; border-radius:2px; margin:0 2px;}
+.page_link span{background-color:#548f1e; color:#fff;}
+.page_link a:hover{background-color:#548f1e; color:#fff;}
+
+.login{float:left; height:59px; line-height:59px; position:relative; left:195px;}
+.login input{width:150px;height:28px; line-height:28px; padding:0 3px; border-radius:2px 0 0 2px; color:#959595;text-indent: 6px;}
+.login input.submit{width:30px; height:28px; position:relative; left:-5px; top:9px; background:#68AA2B url(../images/search.png) no-repeat center center; padding:0; border-radius:0 2px 2px 0;}
+@-moz-document url-prefix()
+{
+    .login input.submit{ top:1px; }
+}
+
+
+/**新加头部下拉*/
+.common_in{position: relative;}
+.u_m{position:absolute;background:white;width:100%; min-width:140px;right:-1px;border:1px solid #dbe6d2;top:23px;display:none; z-index:999;}
+.u_m li{border-top:1px solid #eff3eb; height:30px; line-height:30px;}
+.u_m li a{display:block;width:100%;color:#919191;padding-left:10px}
+.u_m li:hover{background:#d4ecbe}
+.triangle{background:url(../images/triangle.png) 0px 7px no-repeat;padding:0px 5px}
+/*登录后的下拉*/
+.me{background:url(../images/me.png) left no-repeat}
+.me_guid{background:url(../images/me_guid.png) left no-repeat}
+.me_travel{background:url(../images/me_travel.png) left no-repeat}
+.me_post{background:url(../images/me_post.png) left no-repeat}
+.me_bag{background:url(../images/me_bag.png) left no-repeat}
+.me_photo{background:url(../images/me_photo.png) left no-repeat}
+.me_spoor{background:url(../images/me_spoor.png) left no-repeat}
+.me_set{background:url(../images/me_set.png) left no-repeat}
+.me_logout{background:url(../images/me_logout.png) left no-repeat}
+.u_m li{padding-left:15px;}
+.u_m li a{display:block!important;padding-left:15px;text-indent : 10px}

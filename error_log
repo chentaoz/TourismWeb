@@ -1,0 +1,52 @@
+[20-Jun-2015 03:29:40 Asia/ShangHai] PHP Fatal error:  require_once(): Failed opening required '/home/wildkidc/public_html/srqS4Y3/database/drivers/MYSQL/MYSQL_driver.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/wildkidc/public_html/srqS4Y3/database/DB.php on line 140
+[20-Jun-2015 03:29:58 Asia/ShangHai] PHP Fatal error:  require_once(): Failed opening required '/home/wildkidc/public_html/srqS4Y3/database/drivers/MYSQL/MYSQL_driver.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/wildkidc/public_html/srqS4Y3/database/DB.php on line 140
+[20-Jun-2015 03:30:15 Asia/ShangHai] PHP Fatal error:  require_once(): Failed opening required '/home/wildkidc/public_html/srqS4Y3/database/drivers/MYSQL/MYSQL_driver.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/wildkidc/public_html/srqS4Y3/database/DB.php on line 140
+[20-Jun-2015 03:30:17 Asia/ShangHai] PHP Fatal error:  require_once(): Failed opening required '/home/wildkidc/public_html/srqS4Y3/database/drivers/MYSQL/MYSQL_driver.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/wildkidc/public_html/srqS4Y3/database/DB.php on line 140
+[20-Jun-2015 03:30:17 Asia/ShangHai] PHP Fatal error:  require_once(): Failed opening required '/home/wildkidc/public_html/srqS4Y3/database/drivers/MYSQL/MYSQL_driver.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/wildkidc/public_html/srqS4Y3/database/DB.php on line 140
+[23-Jul-2015 04:45:12 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '$_this_member' (T_VARIABLE), expecting function (T_FUNCTION) in /home/wildkidc/public_html/fpQ83KQw/controllers/forum.php on line 5
+[23-Jul-2015 04:46:52 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')' in /home/wildkidc/public_html/fpQ83KQw/controllers/forum.php on line 28
+[23-Jul-2015 04:48:03 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')' in /home/wildkidc/public_html/fpQ83KQw/controllers/forum.php on line 28
+[06-Aug-2015 21:41:11 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 42
+[06-Aug-2015 21:41:12 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 42
+[06-Aug-2015 21:41:14 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 42
+[06-Aug-2015 21:41:14 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 42
+[06-Aug-2015 21:41:53 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 42
+[06-Aug-2015 21:42:01 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 42
+[06-Aug-2015 21:42:30 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 42
+[06-Aug-2015 21:45:06 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 53
+[06-Aug-2015 21:45:23 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 53
+[07-Aug-2015 10:55:08 Asia/ShangHai] PHP Fatal error:  Call to a member function post() on a non-object in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 102
+[07-Aug-2015 10:55:16 Asia/ShangHai] PHP Fatal error:  Call to a member function post() on a non-object in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 102
+[08-Aug-2015 10:08:11 Asia/ShangHai] PHP Fatal error:  Call to protected method CI_DB_active_record::_compile_select() from context 'Ws' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 82
+[08-Aug-2015 10:08:11 Asia/ShangHai] PHP Fatal error:  Call to protected method CI_DB_active_record::_compile_select() from context 'Ws' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 82
+[08-Aug-2015 10:08:27 Asia/ShangHai] PHP Fatal error:  Call to protected method CI_DB_active_record::_compile_select() from context 'Ws' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 82
+[08-Aug-2015 10:11:59 Asia/ShangHai] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::get_compiled_select() in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 82
+[08-Aug-2015 10:11:59 Asia/ShangHai] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::get_compiled_select() in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 82
+[08-Aug-2015 10:11:59 Asia/ShangHai] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::get_compiled_select() in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 82
+[08-Aug-2015 10:19:29 Asia/ShangHai] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::get_compiled_select() in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 82
+[08-Aug-2015 10:19:37 Asia/ShangHai] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::get_compiled_select() in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 82
+[08-Aug-2015 10:19:37 Asia/ShangHai] PHP Fatal error:  Call to undefined method CI_DB_mysql_driver::get_compiled_select() in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 82
+[08-Aug-2015 10:20:26 Asia/ShangHai] PHP Fatal error:  Call to protected method CI_DB_active_record::_reset_select() from context 'Ws' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 83
+[08-Aug-2015 10:20:30 Asia/ShangHai] PHP Fatal error:  Call to protected method CI_DB_active_record::_reset_select() from context 'Ws' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 83
+[08-Aug-2015 10:20:31 Asia/ShangHai] PHP Fatal error:  Call to protected method CI_DB_active_record::_reset_select() from context 'Ws' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 83
+[08-Aug-2015 10:20:35 Asia/ShangHai] PHP Fatal error:  Call to protected method CI_DB_active_record::_reset_select() from context 'Ws' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 83
+[08-Aug-2015 10:20:44 Asia/ShangHai] PHP Fatal error:  Call to protected method CI_DB_active_record::_reset_select() from context 'Ws' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 83
+[08-Aug-2015 10:20:44 Asia/ShangHai] PHP Fatal error:  Call to protected method CI_DB_active_record::_reset_select() from context 'Ws' in /home/wildkidc/public_html/fpQ83KQw/controllers/ws.php on line 83
+[12-Aug-2015 03:55:19 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')', expecting :: (T_PAAMAYIM_NEKUDOTAYIM) in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 771
+[12-Aug-2015 03:56:55 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')', expecting :: (T_PAAMAYIM_NEKUDOTAYIM) in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 771
+[12-Aug-2015 03:56:59 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')', expecting :: (T_PAAMAYIM_NEKUDOTAYIM) in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 771
+[12-Aug-2015 03:57:05 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ')', expecting :: (T_PAAMAYIM_NEKUDOTAYIM) in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 771
+[12-Aug-2015 03:57:54 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '[', expecting ']' in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 772
+[12-Aug-2015 04:04:56 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '[', expecting ']' in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 772
+[12-Aug-2015 04:12:24 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '[', expecting ']' in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 772
+[12-Aug-2015 04:12:29 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '[', expecting ']' in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 772
+[12-Aug-2015 04:13:17 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '[' in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 772
+[12-Aug-2015 04:14:13 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '[', expecting ')' in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 774
+[13-Aug-2015 00:34:44 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 754
+[13-Aug-2015 00:34:51 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 754
+[13-Aug-2015 00:35:20 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 754
+[13-Aug-2015 03:43:57 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '[' in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 829
+[14-Aug-2015 22:38:54 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 930
+[14-Aug-2015 22:39:51 Asia/ShangHai] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 930
+[14-Aug-2015 23:33:15 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ',', expecting ')' in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 1001
+[15-Aug-2015 05:43:10 Asia/ShangHai] PHP Parse error:  syntax error, unexpected ';' in /home/wildkidc/public_html/fpQ83KQw/controllers/place.php on line 1003

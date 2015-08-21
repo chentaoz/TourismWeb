@@ -1,0 +1,93 @@
+@charset 'utf-8';
+/* 页面通用样式 */
+body{background:#FFFFFF; color:#000000;}
+a{color:#666;text-decoration:none;}
+a:hover{color:#FF6600; text-decoration:none;}
+div{margin:0 auto;padding:0;}
+textarea{resize:none;}/* 去掉chrome中右下角的小三角 */
+span.edit{background:#047ad5; color:#fff; height:25px; line-height:25px; display:inline-block; padding:0 5px; border-radius:4px;}
+/* 对齐方式 */
+.right{text-align:right;}
+.center{text-align:center;}
+.left{text-align:left;}
+
+.ex300{width:300px;}
+.ex500{width:500px;}
+.ex100{width:100px;}
+.ex120{width:120px;}
+.ex150{width:150px;}
+/* 字体 */
+.b{font-weight:700;}
+.fontcolorA{color:#cacaca;}
+.fontcolorB{color:#f50;}
+.fontcolorC{color:#3b6998;}
+
+/* 整体网站布局样式 */
+.wraper{width:100%; height:100%;}
+.area-top{}
+.area-l{width:160px; float:left;background:url(../images/mainbg.png) repeat-y right top; position:relative; min-height:500px;}
+.area-r{margin-left:160px; min-width:800px;}
+.container{width:98%; margin:1%;}
+
+
+/* 顶部 */
+.area-top .fn-left{width:160px;}
+.fn-left .logopanel{display:block;height:50px; line-height:50px; background:#235688; border-right:1px solid #023c70; padding-left:10px;}
+.logopanel a{font-size:20px; color:#fff;}
+.logopanel a:hover{text-decoration:none;}
+.datewidget{height:35px; line-height:35px; background:#232323; font-size:11px; color:#999; padding-left:15px;}
+
+.area-top .system-panel{margin-left:160px; min-width:800px; height:85px; background:#3b6998; position:relative;}
+.system-panel #J-showmenu{display:inline-block; width:40px; height:35px; background:#0b4073 url(../images/menu.png) no-repeat center center; margin:7px 0 0 8px; float:left;}
+.system-panel .welcome{position:absolute; right:15px;border:1px solid #0b4073; border-radius:3px; color:#ccc; background:#0b4073; height:30px; line-height:30px; margin:10px 0; padding:0 10px;}
+.welcome a{color:#ccc; margin-left:15px;}
+.welcome a:hover{color:#fff;}
+
+.system-panel .nav{width:100%; height:35px; line-height:35px; background:#333; position:absolute; top:50px; left:0;}
+.nav li{float:left; height:35px; line-height:35px; padding:0 15px;}
+.nav li.focus{background:#fff; border:1px solid #fff; border-radius:3px;}
+.nav li a{color:#eee; font-size:14px;}
+.nav li.focus a{color:#3b6998; font-weight:700;}
+.nav li ul{display:none;}
+
+/* 左边导航 */
+#J-sidemenu{margin:10px 0;}
+#J-sidemenu li{height:30px; line-height:30px; padding-left:35px; margin-right:1px; background:url(../images/newwin.gif) no-repeat 10px center;}
+#J-sidemenu li.focus{background-color:#DBEAF9;}
+#J-sidemenu li a:hover{color:#2366A8;}
+#J-sidemenu li.focus a{color:#2366A8;}
+.copyright{position:absolute; left:5px; bottom:10px; border-top:1px solid #ddd; color:#888;}
+
+/* 表格通用 */
+table{width:98%; border:none; border-collapse:collapse; text-align:center; margin:1%; color:#666;}
+table th{height:35px; border-top:1px solid #ddd; border-bottom:1px solid #ddd; background:#eaeaea; background:-webkit-linear-gradient(top,#ededed,#eaeaea); font-weight:700; padding-left:10px; color:#3b6998; font-size:13px;}
+table td{padding:0 5px; margin:0; height:35px; border-top:1px dotted #ddd;border-bottom:1px dotted #ddd; vertical-align:middle; text-align:left;}
+table tr.tdbg td{background:#eee;}
+table tr.checkedbg td{background:#fcfee4;}
+table tr.hoverbg td{background:#FFFFE1;}
+
+/* 表单通用 */
+table input:focus, textarea:focus, select:focus{border-color: rgba(82, 168, 236, 0.8);outline:0;outline: thin dotted \9;-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);}/* 去掉chrome中表单获取焦点时自动添加的土黄色边框，改成自定义的 */
+table input{width:200px; border:1px solid #cecece; line-height:18px; height:18px; margin:0 2px; border-radius:3px;padding:4px;-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -webkit-transition: border linear 0.2s, box-shadow linear 0.2s; color:#666;}
+table textarea{border-radius:3px; border:1px solid #ccc;-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -webkit-transition: border linear 0.2s, box-shadow linear 0.2s; color:#666; margin:2px;}
+.submit,.bsubmit{width:60px; height:28px; border:1px solid #0068B8; background:#349FD6; background:-webkit-gradient(linear,0 0,0 100%,from(#349FD6),to(#0057CC)); margin-right:10px; font-weight:700; letter-spacing:2px; color:#fff; text-align:center;}
+.bsubmit{width:90px;}
+.submit:hover,.bsubmit:hover{background:#006ECC;background:-webkit-gradient(linear,0 0,0 100%,from(#006ECC),to(#0057CC)); }
+.radio{width:15px; border:none; vertical-align:middle; line-height:15px; height:15px; background:none; -webkit-box-shadow:none;}
+select{height:25px;}
+.date{background:url(../images/datePicker.gif) no-repeat right center;}/* 日期 */
+
+.required-display{display:none;	color:red;	padding:0 0 0 20px;background: url('../images/required_red.jpg') 0 -2px no-repeat;margin: 0 0 0 5px;}/* 必填表单提醒 */
+
+.bclass{display:inline-block;width:15px; height:18px; background:url(../images/ui-icons_454545_256x240.png) no-repeat -65px -188px;}
+
+/* 分页 */
+.ui-page{height:30px; line-height:30px; clear:both;}
+.ui-page .ui-page-current{background:#ddd;border:1px solid #ddd;}
+.ui-page a{padding:6px 10px; border:1px solid #ddd; margin-right:5px; font-family:"宋体","microsoft yahei"; background:-webkit-linear-gradient(top,#eee,#efefef); border-radius:3px; font-weight:700; color:#666;}
+.ui-page a:hover{background:#ddd;}
+
+/*批量上传文件的队列样式*/
+#queueid{width:380px; height:170px; border:1px solid #eee; border-radius:3px; overflow:hidden; margin:2px 0;}
+
+.table {width:200px;height:23px;float:left;	margin:2px;}

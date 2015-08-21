@@ -1,0 +1,105 @@
+@charset "utf-8";
+
+	/* demo 展示盒子 */
+	#showDemoBox{ display:none;  width:1000px; height:530px;  text-align:left;  overflow-y:scroll; }
+	.blockPage{ top:20px !important; }
+	#showDemoBox .hd{ height:50px; line-height:50px; background:#ccc; font-size:20px; color:#fff;  font-weight:bold; padding:0 20px;
+		background: #1b80b2;
+		background: -webkit-gradient(linear, 0 0, 0 bottom, from(#0797DD), to(#1974a1));
+		background: -webkit-linear-gradient(#0797DD, #1974a1);
+		background: -moz-linear-gradient(#0797DD, #1974a1);
+		background: -ms-linear-gradient(#0797DD, #1974a1);
+		background: -o-linear-gradient(#0797DD, #1974a1);
+		background: linear-gradient(#0797DD, #1974a1);
+		-pie-background: linear-gradient(#0797DD, #1974a1);
+		behavior: url(PIE.htc);
+	}
+	#showDemoBox .hd h3{ font-weight:bold; }
+	#showDemoBox em{ display:inline-block; *display:inline; zoom:1; width:20px; height:16px; background:#fff;
+		line-height:14px; text-align:center; float:right; color:#333; cursor:pointer; margin-top:10px; font-size:14px; font-family:Verdana;    }
+	#showDemoBox #iframe{ width:970px; height:1000px;  }
+
+
+/* demoEffect 文件CSS ======================================= */
+
+	#demoContent{ text-align:center; margin-top:20px; width:1000px;}
+	#demoContent .effect{ display:inline-block; *display:inline; zoom:1; text-align:left; width:1130px; margin:0 auto;   }
+	#demoContent .js{ text-align:left; margin:10px 20px;  line-height:20px;  background:#f3f3f3;  padding:5px 20px;    }
+	#demoContent .js span{ color:#1974a1; }
+	#demoContent .js span i{ color:#f30; font-weight:bold;  }
+	#demoContent .notice{ color:#fff;  background:#000; text-align:left; padding:4px 20px; margin:10px 20px;   }
+	#demoContent .css{  text-align:left; margin:10px 20px;  }
+	#demoContent .css blockquote{ overflow:scroll; }
+
+	#demoContent  .authorWord{ padding:10px 20px; border:1px dotted #ddd; text-align:left; margin-bottom:20px;   }
+	#demoContent  .authorWord em{ color:#f00;  }
+	/*
+	深蓝色 #1974a1
+	*/
+
+
+/* 源文件颜色 */
+img:-moz-broken{-moz-force-broken-image-icon : 1;width : 24px;height : 24px;}
+blockquote { font-family: "Consolas" , "Courier New" ,Courier,mono,serif; font-size: 12px;  margin: 0 0 1em 0; padding-top: 1px; }
+blockquote ol, blockquote ol li, blockquote ol li span { margin: 0; padding: 0; border: none; }
+blockquote a, blockquote a:hover { background: none; border: none; padding: 0; margin: 0; }
+blockquote ol { list-style: decimal; background-color: #fff; margin: 0px 0px 1px 45px !important; padding: 0px; color: #5C5C5C; }
+blockquote ol li { list-style: decimal-leading-zero; list-style-position: outside !important; border-left: 3px solid #6CE26C; background-color: #F8F8F8; color: #5C5C5C; padding: 0 3px 0 10px !important; margin: 0 !important; line-height: 14px; }
+blockquote ol li.alt { background-color: #FFF; color: inherit; }
+blockquote ol li span { color: black; background-color: inherit; }
+blockquote .comment, blockquote .comments { color: #008200; background-color: inherit; }
+blockquote .string { color: blue; background-color: inherit; }
+blockquote .keyword { color: #069; font-weight: bold; background-color: inherit; }
+blockquote .blockquoteprocessor { color: gray; background-color: inherit; }
+blockquote .dp-xml .cdata { color: #ff1493; }
+blockquote .dp-xml .tag, blockquote .dp-xml .tag-name { color: #069; font-weight: bold; }
+blockquote .dp-xml .attribute { color: red; }
+blockquote .dp-xml .attribute-value { color: blue; }
+blockquote .dp-sql .func { color: #ff1493; }
+blockquote .dp-sql .op { color: #808080; }
+blockquote .dp-rb .symbol { color: #a70; }
+blockquote .dp-rb .variable { color: #a70; font-weight: bold; }
+blockquote .dp-py .builtins { color: #ff1493; }
+blockquote .dp-py .magicmethods { color: #808080; }
+blockquote .dp-py .exceptions { color: brown; }
+blockquote .dp-py .types { color: brown; font-style: italic; }
+blockquote .dp-py .commonlibs { color: #8A2BE2; font-style: italic; }
+blockquote .dp-j .annotation { color: #646464; }
+blockquote .dp-j .number { color: #C00000; }
+blockquote .dp-delphi .number { color: blue; }
+blockquote .dp-delphi .directive { color: #008284; }
+blockquote .dp-delphi .vars { color: #000; }
+blockquote .dp-css .value { color: black; }
+blockquote .dp-css .important { color: red; }
+blockquote .dp-c .vars { color: #d00; }
+blockquote .dp-cpp .datatypes { color: #2E8B57; font-weight: bold; }
+
+
+
+@charset "utf-8";
+/* CSS Document */
+
+/* 通用信息列表_普通式 */
+.infoList li{ height:24px; line-height:24px;   }
+.infoList li .date{ float:right; color:#999;  }
+
+
+/* 视频网站大焦点图 */
+.tempWrap ul{min-height:650px;position:relative;}
+.tv-slideBox{  max-height:600px; overflow:hidden; background:gray; position:relative;   }
+.tv-slideBox .hd{ display:none;  }
+.tv-slideBox li{ overflow:hidden; text-align: center; }
+.tv-slideBox li .pic{ width:1130px;height:650px; display:table-cell;
+    text-align:center;position:relative;
+    vertical-align:middle }
+.tv-slideBox li .pic img{ max-width:1130px;    position:static;+position:relative;top:-50%;left:-50%; }
+.tv-slideBox li .con{ position:relative;  background:#fff;  height:288px; width:240px; padding-left:20px;   float:left; background:url("../../images/gtvSplit.png") -281px 0 repeat-y;  }
+.tv-slideBox li .con .bg{ position:absolute; width:96px; height:96px; right:0px; top:0px; background:url("../../images/gtvSplit.png") -84px 0 no-repeat;    }
+.tv-slideBox li .con .title{  width:170px; padding-top:30px; height:68px;  }
+.tv-slideBox li .con .title a{ color:#fff;  font:normal 14px/22px "Microsoft YaHei"; _font-weight:bold; }
+.tv-slideBox li .con .intro{ color:#cbcbcb; width:220px; border-top:1px dotted #cbcbcb;  padding-top:10px; margin-top:10px;   }
+.tv-slideBox li .con .intro .more{ position:absolute; bottom:20px; left:20px; display:block; width:94px; height:28px; background:url("../../images/gtvSplit.png") -184px 0 no-repeat; overflow:hidden; line-height:990px;   }
+.tv-slideBox li .con .intro .more:hover{ bottom:21px; }
+.tv-slideBox .prev,.tv-slideBox .next{ position:absolute; z-index:1;width:39px; height:87px; overflow:hidden; cursor:pointer; left:10px; top:235px; background:url("../../images/gtvSplit.png") 0 0 no-repeat; }
+.tv-slideBox .next{ background-position:-41px 0; left:1070px; top:235px}
+.tv-slideBox .prev:hover,.tv-slideBox .next:hover{ top:235px;  }

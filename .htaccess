@@ -1,0 +1,41 @@
+RewriteEngine on
+RewriteCond %{http_host} ^gowildkid.com [NC]
+RewriteRule ^(.*)$ http://www.gowildkid.com/$1 [L,R=301]
+
+# If the user types "index.php" or "admin.php".
+RewriteCond $1 !^(index\.php|admin\.php|css|js|upload|images|robots\.txt)
+
+# If the user types just "admin".
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^a8faPFwsc$ index\.php [L,QSA]
+
+# If the user enter in any admin section, like "admin/section".
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^a8faPFwsc\/(.*)$ index\.php/$1 [L,QSA]
+
+# If the user types any site section, like "site/section".
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index\.php/$1 [L,QSA]
+
+Order Deny,Allow
+Deny from all
+Allow from 67.85.27.179 #jason
+Allow from 108.24.72.201 #lin
+Allow from 108.24.90.252  #lin2
+#Allow from 66.249.64.136 #daisy
+Allow from 69.249.187.231 #daisy
+Allow from 72.86.173.49 #vicki
+Allow from 73.141.79.199 #zhang
+Allow from 68.82.182.252 #cao
+Allow from 69.249.38.235 #philly office
+Allow from 104.236.24.32 #gowildkid.com
+Allow from 107.170.242.241 #dev.app-event
+Allow from 24.219.197.249 #Roy
+Allow from 183.13.97.141 #Bin yao
+Allow from 183.14.175.4 #Bin yao hom
+Allow from 69.141.172.91  #da chen home
+Allow from 113.142.227.145  #yao home
+Allow from 108.16.36.24  #albert home

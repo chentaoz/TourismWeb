@@ -1,0 +1,84 @@
+.picScroll-left{ 
+	overflow:hidden; 
+	position:relative; 
+}
+.picScroll-left .hd{ 
+	width: 90px; 
+	margin: 0 auto; 
+	overflow:hidden;  
+	height:30px; 
+	text-align: center;
+}
+.picScroll-left .hd .prev,.picScroll-left .hd .next{ 
+	display:block;  
+	width:5px; 
+	height:9px; 
+	float:left; 
+	margin-right:10px; 
+	margin-left:4px;
+	margin-top:10px;  
+	overflow:hidden;
+    cursor:pointer; 
+    background:url("../images/arrow.png") -1px -1px no-repeat;
+}
+.picScroll-left .hd .next{ background-position:0 -50px;  }
+.picScroll-left .hd .prevStop{ background-position:-60px 0; }
+.picScroll-left .hd .nextStop{ background-position:-60px -50px; }
+.picScroll-left .hd ul{ 
+	float:left; 
+	overflow:hidden; 
+	zoom:1; 
+	margin-top:10px; 
+	zoom:1;width: auto; 
+	padding: 0;
+}
+.picScroll-left ul{ padding-left: 0;}
+.picScroll-left .hd ul li{ 
+	float:left;  width:9px; 
+	height:9px; overflow:hidden; 
+	margin-right:5px; 
+	text-indent:-999px; 
+	cursor:pointer; 
+	background:url("../images/icoCircle.png") 0 -9px no-repeat; 
+}
+.picScroll-left .hd ul li.on{ background-position:0 0; }
+.picScroll-left .bd ul{ overflow:hidden; zoom:1; }
+.picScroll-left .bd ul li{ 
+	width: 331px; 
+	overflow: hidden ;
+	float:left; 
+	_display:inline; 
+	overflow:hidden; 
+	text-align:center; 
+	box-sizing:content-box; 
+}
+.picScroll-left .bd ul li .pic{ 
+	text-align:center; 
+	width: 331px; 
+	height: 179px; 
+	overflow: hidden 
+}
+.picScroll-left .bd ul li .title{
+	line-height:34px;
+	font-size: 16px; 
+	font-weight: bold; 
+	color: #000;
+	text-align: center; 
+}
+.picScroll-left .bd ul li .title a{color: #323232}
+.picScroll-left .bd ul li .des{ width: 331px;line-height:24px;height: 70px; overflow: hidden;color:#646464;}
+.picScroll-left .bd .pd10{ padding-right: 28px}
+
+@media (max-width: 980px) {
+	.picScroll-left .hd{display: none;}
+	.picScroll-left .bd ul li { width: 49%; margin-left:0.5%; margin-right: 0.5px; }
+	.picScroll-left .bd .pd10{ padding-right:0;}
+	.picScroll-left .bd ul li .pic {width: 100%; height: auto;}
+	.picScroll-left .bd ul li .pic img{ width: 100%;}
+	.picScroll-left .bd ul li .des { width: 100%; height: auto; margin-bottom: 10px;}
+}
+@media (max-width: 640px) {
+	.picScroll-left .bd ul li { width: 98%; margin-left:1%; margin-right: 1px; }
+	.picScroll-left .bd .pd10{ padding-right:0;}
+	
+}

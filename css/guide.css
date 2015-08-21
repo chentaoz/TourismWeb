@@ -1,0 +1,111 @@
+/* 攻略详细页 */
+.bg_f5 {
+	background-color: #F5F5F5;
+	overflow: hidden;
+}
+.strategy_place{
+	background: #fff;
+	height: 115px;
+	width: 100%;
+	margin-top: 20px;padding-top: 24px;
+}
+.place_name{padding-left: 16px;}
+.place_name a{
+	font-size: 32px;
+	line-height: 38px;
+	color: #000;
+	text-decoration: none;
+}
+.strategy_placer .desti_right_share {
+    height: 42px;
+    text-align: right;
+    background: none repeat scroll 0% 0% #FFF;
+    width: auto;
+    padding-right: 12px;
+    padding-top: 10px;
+}
+.strategy_placer .desti_right_share a{margin: 0 6px;}
+.desti_right_sharelbot {
+    font-size: 14px;
+    color: #646464;
+    width: auto;
+    padding-top: 6px;
+    padding-right: 18px;
+    text-align: right;
+}
+.strshowl{
+	background: #fff;
+	height: auto;
+	width: 25%;
+	margin-top: 20px;
+	padding-left: 16px;
+	padding-bottom: 200px;
+}
+.strshowl_tit{
+	font-size: 20px;
+	line-height: 50px;
+	padding-top: 10px;
+}
+.strshowl_des {
+	font-size: 16px;
+	line-height: 26px;
+}
+.strshowl_des span {
+	font-size: 14px;
+	color: #636363;
+}
+.srtshowl_down {
+	width: 160px;
+	height: 45px;
+	margin-top: 45px;
+	text-align: center;
+	background: #88c74f;
+	line-height: 45px;
+	font-size: 20px;
+	font-weight: bold;
+	border-radius: 3px;	
+}
+.srtshowl_down a{
+	color: #fff;
+}
+.strshowr {
+	width: 73%;
+	margin-top: 20px;
+}
+.strshowr_ban .slider-wrapper img{
+	width: 100%;
+	max-height: 455px;
+}
+.strshowr_intro {
+	background: #fff;
+	margin-top: 35px;
+	padding: 0 10px;
+}
+.strshowr_intro_tit {
+	font-size: 24px;
+	color: #323232;
+	height: 60px;
+	line-height: 60px;
+}
+.strshowr_intro_des {
+	font-size: 14px;
+	color: #323232;
+	line-height: 20px;
+	padding-bottom: 40px;
+}
+@media(max-width: 640px){
+	.strategy_place{display: none;}
+	.strshowl {float: none;width: 100%;padding: 5px 12px; margin-top: 0;}
+	.strshowl_tit{line-height: 32px;}
+	.strshowl_des { font-size: 14px;line-height: 20px;}
+	.srtshowl_down{margin-top: 6px;width: 100px;height: 32px;line-height: 32px;font-size: 16px;}
+	.strshowr {float: none; width: 100%;}
+	.strshowr_ban .slider-wrapper {width: 100%;padding-left: 6px;padding-right: 6px;height: 255px;overflow: hidden;}
+	.strshowr_intro{margin-top: 6px;}
+	.strshowr_intro_tit {font-size: 16px;height: 42px;line-height: 42px;}
+	.strshowr_intro_des{padding-bottom: 12px;}
+	.show_comment{padding: 6px 6px;margin-top: 0px;margin-bottom: 10px;}
+	.show_comment_other{margin-bottom: 10px;}
+}
+
+

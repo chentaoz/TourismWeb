@@ -1,0 +1,2 @@
+AuthName "test"
+AuthUserFile "/home/wildkidc/.htpasswds/public_html/fpQ83KQw/passwd"

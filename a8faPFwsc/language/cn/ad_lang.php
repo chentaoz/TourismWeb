@@ -1,0 +1,13 @@
+<?php
+$lang['ad_name']='名称需填写';
+$lang['ad_width']='宽度需填写';
+$lang['ad_height']='高度需填写';
+$lang['ad_pos']='请选择要新增的广告位置';
+$lang['ad_title']='标题需填写';
+$lang['ad_content']='内容需填写';
+$lang['ad_img']='请选择要上传的图片';
+$lang['ad_img_error']='上传的图片有误，请检查图片的容量大小或图片的宽高尺寸是否符合系统指定的需求';
+$lang['ad_sclass_not_blank']='你要删除的广告频道，其下的广告位置不为空，需先删除其下的所有广告位置才可删除该广告频道';
+$lang['numeric']='宽度高度应填写为数字';
+$lang['ad_not_blank']='该广告位置下的广告不为空，需先删除该位置下的广告才可删除该广告位置';
+?>

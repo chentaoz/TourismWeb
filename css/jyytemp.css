@@ -1,0 +1,64 @@
+@charset "utf-8";
+/* 搜索下拉层临时CSS */
+.tip_schlay {
+    position: relative;
+    z-index: 99;
+    border: 1px
+    solid #c0c0c0;
+    background: #fff;
+}
+
+.tip_schlay
+ul {
+    width: 100%;
+    overflow: hidden
+}
+
+.tip_schlay
+li {
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px solid #ececec
+}
+
+.tip_schlay li
+a {
+    display: block;
+    height: 32px;
+    overflow: hidden;
+    padding: 0
+    10px;
+    line-height: 32px;
+    color: #323232;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+/*.tip_schlay li a:hover {
+    background: #e0f1df;
+    text-decoration: none
+}
+*/
+.highlight{background: #e0f1df}
+.tip_schlay li
+a.current {
+    background: #e0f1df
+}
+
+.tip_schlay li
+em {
+    color: #323232
+}
+
+.tip_schlay li
+.property {
+    margin-left: 10px;
+    color: #959595
+}
+
+.tip_schlay
+.null {
+    padding-left: 12px;
+    line-height: 32px;
+    color: #959595
+}

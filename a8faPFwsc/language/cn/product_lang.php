@@ -1,0 +1,10 @@
+<?php
+$lang['product_name']='名称需填写';
+$lang['product_para']='请指定要编辑的产品';
+$lang['product_input']='必填项需填写';
+$lang['product_subclass']='该子分类不为空，请先删除其子分类';
+$lang['product_input_classic']='请选择产品的分类';
+$lang['product_input_title']='标题需填写';
+$lang['product_input_content']='内容需填写';
+$lang['product_input_img']='请选择要上传的图片';
+?>
