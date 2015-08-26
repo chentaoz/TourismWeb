@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="<?= WWW_domian ?>css/master.css">
     <link rel="stylesheet" href="/lib/font-awesome-4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?=WWW_domian?>css/map.css">
-    <link rel="stylesheet" href="<?=WWW_domian?>icomoon/iconmoon.css">
+    <link rel="stylesheet" href="<?=WWW_domian?>css/map-pin.css">
+    <link rel="stylesheet" href="<?=WWW_domian?>icomoon/gwk-icon.css">
     <style>
         @media (max-width: 980px) {
             .footer {
@@ -224,13 +225,13 @@
                             <div id="menu-btn-ctn" class="container">
                                 <div class="row">
                                     <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="menu-btn-np">
-                                        <i onclick="javascript:__map.toggleNationalParkData();" class="icon-np_g" title="国家公园" data-toggle="tooltip" data-placement="bottom" ></i>
+                                            <i onclick="javascript:__map.togglePoiPanel ();" class="icon-gwk-btn-poi" title="景点和服务设施" data-toggle="tooltip" data-placement="bottom" ></i>
                                     </span>
                                     <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="menu-btn-dest">
-                                        <i onclick="javascript:__map.toggleDestPanel(this);" class="icon-dest_g" title="目的地" data-toggle="tooltip" data-placement="bottom" ></i>
+                                            <i onclick="javascript:__map.toggleDestPanel(this);" class="icon-gwk-btn-dest" title="目的地" data-toggle="tooltip" data-placement="bottom" ></i>
                                     </span>
                                     <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="menu-btn-activity">
-                                        <i onclick="javascript:__map.pullActivities();__map.toggleActivityRcmdPanel();" class="icon-activity_g" title="活动" data-toggle="tooltip" data-placement="bottom" ></i>
+                                            <i onclick="javascript:__map.pullActivities();__map.toggleActivityRcmdPanel();" class="icon-gwk-btn-activity" title="活动" data-toggle="tooltip" data-placement="bottom" ></i>
                                     </span>
                                 </div>
                             </div>
@@ -282,13 +283,13 @@
                                             <ul id="ul-filter-poi">
                                                 <?php foreach($sport_cate as $cate):?>
                                                     <li onclick="javascript:__map.pullDestData(this)">
-                                                        <img src="//www.gowildkid.com/upload/sports_icon/<?php echo $cate['img'] ?>" />
+                                                        <span class="gwk-pin-dest-<?php echo $cate['spid'] ?>"> </span>
                                                         <input type="checkbox" style="display: none;" name="filter_sports[]" value="<?php echo $cate['spid'] ?>" />
-                                                        <?php echo $cate['name'] ?>
+                                                        <span class="gwk-dest-title"><?php echo $cate['name'] ?></span>
                                                     </li>
                                                 <?php endforeach; ?>
                                                 <li onclick="javascript:__map.pullDestData(this)">
-                                                    <img src="//www.gowildkid.com/images/map_icons/all.png" />
+                                                    <span class="gwk-pin-dest-all"> </span>
                                                     <input type="checkbox" style="display: none;" name="filter_sports[]" value="all" />
                                                     全部
                                                 </li>
@@ -301,6 +302,23 @@
                                         <div class="panel-body" >
                                             <ul id="list-group-act-recmd">
 
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default panel-to-toggle" id="panel-pois" style="display: none;">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#panel-content-poi">景点和服务设施</a>
+                                        </h4>
+                                    </div>
+                                    <div id="panel-content-poi" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <ul id="ul-poi">
+                                                <li onclick="javascript:__map.toggleNationalParkData();">
+                                                    <i class="icon-gwk-poi-national-park" ></i>
+                                                    <h5>国家公园</h5>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>

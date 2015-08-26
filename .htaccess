@@ -35,7 +35,7 @@ Allow from 104.236.24.32 #gowildkid.com
 Allow from 107.170.242.241 #dev.app-event
 Allow from 24.219.197.249 #Roy
 Allow from 183.13.97.141 #Bin yao
-Allow from 183.14.175.4 #Bin yao hom
+Allow from 183.13.103.71 #Bin yao hom
 Allow from 69.141.172.91  #da chen home
 Allow from 113.142.227.145  #yao home
 Allow from 108.16.36.24  #albert home

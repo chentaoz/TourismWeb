@@ -204,9 +204,14 @@ var __map = {
         });
 
         __map.geolocationLayer.clear();
-        var _geo_pin = new Microsoft.Maps.Pushpin(__map.init_user_location);
-        _geo_pin.Title = "您目前的位置";
+        var _geo_pin = new Microsoft.Maps.Pushpin(__map.init_user_location, {
+            text: "",
+            typeName: "gwk-pin-dest-mypos",
+            title: "您目前的位置"
+        });
+        // _geo_pin.Title = "您目前的位置";
         _geo_pin.Description = "坐标： （" + __map.init_user_location.latitude + "," + __map.init_user_location.longitude + ")";
+
         __map.geolocationLayer.push(_geo_pin);
     },
 
@@ -216,6 +221,10 @@ var __map = {
 
     toggleDestPanel : function (_node) {
         __map.togglePanel('panel-dests');
+    },
+
+    togglePoiPanel : function () {
+        __map.togglePanel('panel-pois');
     },
 
     toggleActivityRcmdPanel : function (_node) {
@@ -320,10 +329,21 @@ var __map = {
                     var _pin = null;
                     if(_tmp_loc.hasOwnProperty('sport_id')) {
                         _pin = new Microsoft.Maps.Pushpin(_pin_loc, {
-                            icon: "//www.gowildkid.com/images/map_icons/"+_tmp_loc.sport_id+".png"
+                            // icon: "//www.gowildkid.com/images/map_icons/"+_tmp_loc.sport_id+".png",
+                            text: "",
+                            title: '<a href="//www.gowildkid.com/place/index/pid/' + _tmp_loc.pid + '">' + (
+                                _tmp_loc.hasOwnProperty('name')?_tmp_loc.name:(
+                                    _tmp_loc.hasOwnProperty('title')?_tmp_loc.title:'没有标题')) + '</a>',
+                            typeName: "gwk-pin-dest-" + _tmp_loc.sport_id
                         });
                     } else {
-                        _pin = new Microsoft.Maps.Pushpin(_pin_loc);
+                        _pin = new Microsoft.Maps.Pushpin(_pin_loc, {
+                            text: "",
+                            title: '<a href="//www.gowildkid.com/place/index/pid/' + _tmp_loc.pid + '">' + (
+                                _tmp_loc.hasOwnProperty('name')?_tmp_loc.name:(
+                                    _tmp_loc.hasOwnProperty('title')?_tmp_loc.title:'没有标题')) + '</a>',
+                            typeName: "gwk-pin-dest-default"
+                        });
                     }
 
                     _pin.Title = '<a href="//www.gowildkid.com/place/index/pid/' + _tmp_loc.pid + '">' + (
@@ -333,6 +353,7 @@ var __map = {
                     _pin.Description = __map.strip_tags(_tmp_loc.description).substr(0, 80) + "...";
 
                     _pin.POIType = 'destination';
+
 
                     _layer.push(_pin);
 
@@ -358,11 +379,8 @@ var __map = {
      activities
      */
     loadActivityImages : function (_node, _eid) {
-        console.log('hit loadActivityImages');
         var _self = $(_node);
         var _url  = _self.attr('src');
-
-        console.log(_url);
 
         /*$.get(_pin_html.find('.act-infobox-image').each(function() {
          var _self = $(this);
@@ -417,7 +435,9 @@ var __map = {
 
                     var _pin = null;
                     _pin = new Microsoft.Maps.Pushpin(_pin_loc, {
-                        icon: "//www.gowildkid.com/images/map_icons/act.png"
+                        // icon: "//www.gowildkid.com/images/map_icons/act.png"
+                        text: "",
+                        typeName: 'gwk-pin-dest-activity'
                     });
 
                     _pin.Title = '<a href="//activity.gowildkid.com/activity/detail/' + _tmp_loc.id + '">' + (

@@ -84,7 +84,7 @@ ul#ul-filter-sports,ul.ul-opts {
     color: #548F1E;
 }
 
-ul#ul-filter-poi>li,ul#ul-filter-activity>li {
+ul#ul-filter-poi>li,ul#ul-filter-activity>li,ul#ul-poi>li  {
     float: left;
     /*margin:10px;*/
     margin: 10px 4px;
@@ -93,7 +93,7 @@ ul#ul-filter-poi>li,ul#ul-filter-activity>li {
     text-align: center;
 }
 
-ul#ul-filter-poi>li img,ul#ul-filter-activity>li img {
+ul#ul-filter-poi>li img,ul#ul-filter-activity>li img, ul#ul-poi>li img {
     width: 30px;
     height: 30px;
 }
@@ -191,10 +191,14 @@ ul.ul-opts {
     border: 1px solid #ddd;
     border-radius:4px;
     text-align: center;
-    padding: 2px;
+    padding: 3px;
 }
 
 .rcmd-act-cell {
     width: 50%!important;
     float: left;
+}
+
+.rcmd-act-cell:hover,span[id^=menu-btn-]:hover {
+    cursor: pointer!important;
 }
