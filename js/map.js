@@ -5,7 +5,7 @@
 var __map = {
 
     /*
-     config start
+     * config start
      */
     map : null,
     zoom : 10,
@@ -69,7 +69,7 @@ var __map = {
                 center: "undefined" === typeof _init_geo_loc ?  __map.default_location : _init_geo_loc,
                 zoom: __map.zoom,
                 width: screen.width,
-                height: screen.height - 40,
+                height: screen.height,
                 disablePanning: false,
                 mapTypeId: __map.default_map_type,
                 showBreadcrumb: true,
@@ -259,7 +259,7 @@ var __map = {
             $.get(
                 '/ws/endpoint/get_national_parks',
                 function(_data) {
-                    __map.renderDests(_data, __map.ntnParkLayer, true);
+                    __map.renderDests(_data, __map.ntnParkLayer, true, "gwk-pin-dest-np");
                 });
             $('input#toggleNP').val("1");
         }
@@ -273,7 +273,7 @@ var __map = {
             '/ws/endpoint/get_dests',
             {'filter_sports[]': 'all'},
             function(_data) {
-                __map.renderDests(_data, __map.destLayer, false);
+                __map.renderDests(_data, __map.destLayer, false, null);
             });
     },
 
@@ -282,7 +282,7 @@ var __map = {
 
         if(0 < _keyword.length) {
             $.post('/ws/endpoint/search_dest_by_keywords?keyword='+encodeURIComponent($(_node).val()), function(data){
-                __map.renderDests(data,__map.destLayer,true);
+                __map.renderDests(data,__map.destLayer,true, null);
             },'json');
         }
     },
@@ -310,11 +310,11 @@ var __map = {
             '/ws/endpoint/get_dests',
             $('form#form-map-filter').serialize(),
             function(_data) {
-                __map.renderDests(_data, __map.destLayer, _enable_bound);
+                __map.renderDests(_data, __map.destLayer, _enable_bound, null);
             });
     },
 
-    renderDests : function (_data, _layer, _enable_bound) {
+    renderDests : function (_data, _layer, _enable_bound, _type_name) {
         if(_data) {
             _layer.clear();
             _locs = [];
@@ -327,23 +327,24 @@ var __map = {
                     var _pin_loc = new Microsoft.Maps.Location(_tmp_loc.longitude, _tmp_loc.latitude);
 
                     var _pin = null;
+                    var _pin_options = {
+                        // icon: "//www.gowildkid.com/images/map_icons/"+_tmp_loc.sport_id+".png",
+                        text: "",
+                        title: '<a href="//www.gowildkid.com/place/index/pid/' + _tmp_loc.pid + '">' + (
+                            _tmp_loc.hasOwnProperty('name')?_tmp_loc.name:(
+                                _tmp_loc.hasOwnProperty('title')?_tmp_loc.title:'没有标题')) + '</a>',
+                        typeName: "gwk-pin-dest-" + _tmp_loc.sport_id
+                    };
+
+                    if(null != _type_name) {
+                        _pin_options.typeName = _type_name;
+                    }
+
                     if(_tmp_loc.hasOwnProperty('sport_id')) {
-                        _pin = new Microsoft.Maps.Pushpin(_pin_loc, {
-                            // icon: "//www.gowildkid.com/images/map_icons/"+_tmp_loc.sport_id+".png",
-                            text: "",
-                            title: '<a href="//www.gowildkid.com/place/index/pid/' + _tmp_loc.pid + '">' + (
-                                _tmp_loc.hasOwnProperty('name')?_tmp_loc.name:(
-                                    _tmp_loc.hasOwnProperty('title')?_tmp_loc.title:'没有标题')) + '</a>',
-                            typeName: "gwk-pin-dest-" + _tmp_loc.sport_id
-                        });
+                        _pin = new Microsoft.Maps.Pushpin(_pin_loc, _pin_options);
                     } else {
-                        _pin = new Microsoft.Maps.Pushpin(_pin_loc, {
-                            text: "",
-                            title: '<a href="//www.gowildkid.com/place/index/pid/' + _tmp_loc.pid + '">' + (
-                                _tmp_loc.hasOwnProperty('name')?_tmp_loc.name:(
-                                    _tmp_loc.hasOwnProperty('title')?_tmp_loc.title:'没有标题')) + '</a>',
-                            typeName: "gwk-pin-dest-default"
-                        });
+                        _pin_options.typeName = "gwk-pin-dest-default";
+                        _pin = new Microsoft.Maps.Pushpin(_pin_loc, _pin_options);
                     }
 
                     _pin.Title = '<a href="//www.gowildkid.com/place/index/pid/' + _tmp_loc.pid + '">' + (
