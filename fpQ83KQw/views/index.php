@@ -286,12 +286,14 @@
                                                     <li onclick="javascript:__map.pullDestData(this)">
                                                         <span class="gwk-pin-dest-<?php echo $cate['spid'] ?>"> </span>
                                                         <input type="checkbox" style="display: none;" name="filter_sports[]" value="<?php echo $cate['spid'] ?>" />
+                                                        <br />
                                                         <span class="gwk-dest-title"><?php echo $cate['name'] ?></span>
                                                     </li>
                                                 <?php endforeach; ?>
                                                 <li onclick="javascript:__map.pullDestData(this)">
                                                     <span class="gwk-pin-dest-all"> </span>
                                                     <input type="checkbox" style="display: none;" name="filter_sports[]" value="all" />
+                                                    <br />
                                                     全部
                                                 </li>
                                             </ul>

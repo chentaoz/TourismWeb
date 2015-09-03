@@ -47,14 +47,16 @@ var __map = {
      */
 
     init : function () {
-        this.init_map();
-        this.init_layers();
-        this.init_events();
-        this.init_coords();
+        Microsoft.Maps.loadModule('Microsoft.Maps.Themes.BingTheme', { callback: function () {
+            __map.init_map();
+            __map.init_layers();
+            __map.init_events();
+            __map.init_coords();
 
-        this.geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(this.map);
+            __map.geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(__map.map);
 
-        this.default_cusor = this.map.getRootElement().style.cursor;
+            __map.default_cusor = __map.map.getRootElement().style.cursor;
+        } });
     },
 
     /*
@@ -65,6 +67,7 @@ var __map = {
             document.getElementById('map'),
             {
                 credentials: __map.bing_map_key,
+                //theme: new Microsoft.Maps.Themes.BingTheme(),
                 showScalebar: true,
                 center: "undefined" === typeof _init_geo_loc ?  __map.default_location : _init_geo_loc,
                 zoom: __map.zoom,
@@ -77,10 +80,11 @@ var __map = {
                 backgroundColor: "#548F1E",
                 showDashboard: false,
                 enableHighDpi: true,
+                showCopyright: false,
                 disableKeyboardInput: true,
                 disableMouseInput: false,
-                inertiaIntensity: 0.5,
-                labelOverlay: Microsoft.Maps.LabelOverlay.hidden,
+                useInertia: false,
+                // labelOverlay: Microsoft.Maps.LabelOverlay.hidden,
             }
         );
 
@@ -121,15 +125,9 @@ var __map = {
             __map.init_map();
         }
 
-        Microsoft.Maps.Events.addHandler(__map.map, 'click', __map.displayInfobox);
-        Microsoft.Maps.Events.addHandler(__map.map, 'viewchangeend', __map.initActMap);
-        Microsoft.Maps.Events.addHandler(__map.map, 'mousemove', function(event) {
-            if(event.targetType === 'pushpin') {
-                __map.map.getRootElement().style.cursor = 'pointer';
-            } else {
-                __map.map.getRootElement().style.cursor = __map.default_cusor;
-            }
-        });
+        Microsoft.Maps.Events.addHandler(__map.map, 'click', __map.handleMapClickEvent);
+        Microsoft.Maps.Events.addHandler(__map.map, 'viewchangeend', __map.handleMapViewChgEvent);
+        Microsoft.Maps.Events.addHandler(__map.map, 'mousemove', __map.handleMapMouseMvEvent);
 
         $(window).resize(function() {
             try {
@@ -145,7 +143,15 @@ var __map = {
         });
     },
 
-    displayInfobox : function (e) {
+    handleMapMouseMvEvent : function (e) {
+        if(e.targetType === 'pushpin') {
+            __map.map.getRootElement().style.cursor = 'pointer';
+        } else {
+            __map.map.getRootElement().style.cursor = __map.default_cusor;
+        }
+    },
+
+    handleMapClickEvent : function (e) {
         __map.destInfobox.setOptions({ visible: false});
         __map.actInfoBox.setOptions({ visible: false});
 
@@ -182,6 +188,9 @@ var __map = {
                     description: _pin.Description
                 });
             }
+        } else if (e.targetType == 'map') {
+            // __map.toggleDestPanel();
+            $('.panel-to-toggle').slideUp();
         }
     },
 
@@ -393,7 +402,7 @@ var __map = {
          }));*/
     },
 
-    initActMap : function () {
+    handleMapViewChgEvent : function () {
         $.get("//activity.gowildkid.com/user/ws/".concat($.base64.encode(JSON.stringify({
             func: 'ajax_events_query',
             left_up: __map.map.getBounds().getNorthwest(),
@@ -574,7 +583,7 @@ try {
  */
 $(document).ready(function() {
     try {
-        __map.initActMap();
+        __map.handleMapViewChgEvent();
         __map.mapFitWindow();
     } catch(e) {
         console.log(e);
