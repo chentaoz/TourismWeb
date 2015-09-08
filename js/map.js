@@ -274,6 +274,24 @@ var __map = {
         }
     },
 
+    togglePOIData : function (_type, _node) {
+        var _state_node = $(_node).find('input[type="hidden"]');
+        if('1' == _state_node.val()) {
+            __map.ntnParkLayer.clear();
+            _state_node.val("0");
+        } else {
+            $.get(
+                'http://activity.gowildkid.com/user/ws/'+ $.base64.encode(JSON.stringify({
+                    func: 'pull_poi',
+                    type: 'ski_resort'
+                })),
+                function(_data) {
+                    __map.renderPois (_type, _data, __map.ntnParkLayer, true, "gwk-pin-dest-np");
+                });
+            $('input#toggleNP').val("1");
+        }
+    },
+
     /*
      destinations
      */
@@ -369,6 +387,46 @@ var __map = {
 
                     if(_enable_bound) {
                         _locs.push(_pin_loc);
+                    }
+                } catch (e) { console.log(e); }
+            }
+
+            if(_enable_bound && 0 < _data.length) {
+                if(1 < _locs.length) {
+                    var viewBoundaries = Microsoft.Maps.LocationRect.fromLocations(_locs);
+                    // __map.map.setView({bounds: viewBoundaries, padding: 100});
+
+                } else if (1 == _locs.length) {
+                    __map.map.setView({center: _locs[0]});
+                }
+            }
+        }
+    },
+    renderPois : function (_type, _data, _layer, _enable_bound) {
+        // console.log(_data);
+
+        if(_data) {
+            _layer.clear();
+            _locs = [];
+            for(var i=0; i<_data.length; i++) {
+                try {
+                    var _tmp_loc = _data[i];
+
+                    var _pin_loc = new Microsoft.Maps.Location(_tmp_loc.lat, _tmp_loc.lon);
+                    var _pin = new Microsoft.Maps.Pushpin(_pin_loc, {
+                        text: "",
+                        typeName: "gwk-pin-dest-ski",
+                        title: _tmp_loc.resort_name
+                    });
+                    // _geo_pin.Title = "您目前的位置";
+                    _pin.Title = _tmp_loc.resort_name,
+                    _pin.Description = "坐标： （" + _tmp_loc.lat + "," + _tmp_loc.lon + ")";
+
+
+                    _layer.push(_pin);
+
+                    if(_enable_bound) {
+                        _locs.push(_pin);
                     }
                 } catch (e) { console.log(e); }
             }

@@ -319,8 +319,14 @@
                                         <div class="panel-body">
                                             <ul id="ul-poi">
                                                 <li onclick="javascript:__map.toggleNationalParkData();">
+                                                    <input type="hidden" value="0" class="togglePoiState" />
                                                     <i class="icon-gwk-poi-national-park" ></i>
                                                     <h5>国家公园</h5>
+                                                </li>
+                                                <li onclick="javascript:__map.togglePOIData('ski_resort', this);">
+                                                    <input type="hidden" value="0" class="togglePoiState" />
+                                                    <i class="icon-gwk-poi-national-park" ></i>
+                                                    <h5>滑雪场</h5>
                                                 </li>
                                             </ul>
                                         </div>
