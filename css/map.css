@@ -200,3 +200,9 @@ ul.ul-opts {
 .rcmd-act-cell:hover,span[id^=menu-btn-]:hover {
     cursor: pointer!important;
 }
+
+.modal-backdrop {
+    background-color: transparent!important;
+    opacity: 0!important;
+    z-index: -1!important;
+}

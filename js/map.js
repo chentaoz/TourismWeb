@@ -146,7 +146,25 @@ var __map = {
     handleMapMouseMvEvent : function (e) {
         if(e.targetType === 'pushpin') {
             __map.map.getRootElement().style.cursor = 'pointer';
+
+            if(e.target.hasOwnProperty('HtmlContent')) {
+                if(!__map.destInfobox.getOptions().visible) {
+                    __map.destInfobox.setLocation(e.target.getLocation());
+                    __map.destInfobox.setOptions({
+                        width: 240,
+                        height: 180,
+                        visible: true,
+                        htmlContent: e.target.HtmlContent,
+                        offset: new Microsoft.Maps.Point(24,0)
+                    });
+                }
+            }
         } else {
+            if(__map.destInfobox.getOptions().visible) {
+                __map.destInfobox.setOptions({
+                    visible: false
+                });
+            }
             __map.map.getRootElement().style.cursor = __map.default_cusor;
         }
     },
@@ -181,6 +199,15 @@ var __map = {
                     htmlContent: _pin.HtmlContent,
                     offset: new Microsoft.Maps.Point(12,25)
                 });
+
+                if(_pin.hasOwnProperty('raw_data')) {
+                    $('#modal-poi').find('h4.modal-title').html(_pin.Title);
+                    $('#modal-poi').find('div.modal-body>div').html(_pin.raw_data.resort_name);
+                    $('#modal-poi').modal('toggle');
+                    $('body').removeClass('modal-open');
+                    __map.destInfobox.setOptions({ visible: false});
+                }
+
             } else {
                 this._ibox.setOptions({
                     visible: true,
@@ -402,6 +429,21 @@ var __map = {
             }
         }
     },
+    makePinPoiSki : function (_poi) {
+        var _pin_loc = new Microsoft.Maps.Location(_poi.lat, _poi.lon);
+        var _pin = new Microsoft.Maps.Pushpin(_pin_loc, {
+            text: "",
+            typeName: "gwk-pin-dest-ski",
+            title: _poi.resort_name
+        });
+        _pin.raw_data = _poi;
+        _pin.HtmlContent = "<div class='box box-infobox'>" +
+            "<span class='gwk-infobx-poi-skiing'></span><span style='padding-left: 6px;'>" + _poi.resort_name + "</span></div>";
+        _pin.Title = _poi.resort_name,
+            _pin.Description = "坐标： （" + _poi.lat + "," + _poi.lon + ")";
+
+        return _pin;
+    },
     renderPois : function (_type, _data, _layer, _enable_bound) {
         // console.log(_data);
 
@@ -411,22 +453,11 @@ var __map = {
             for(var i=0; i<_data.length; i++) {
                 try {
                     var _tmp_loc = _data[i];
-
-                    var _pin_loc = new Microsoft.Maps.Location(_tmp_loc.lat, _tmp_loc.lon);
-                    var _pin = new Microsoft.Maps.Pushpin(_pin_loc, {
-                        text: "",
-                        typeName: "gwk-pin-dest-ski",
-                        title: _tmp_loc.resort_name
-                    });
-                    // _geo_pin.Title = "您目前的位置";
-                    _pin.Title = _tmp_loc.resort_name,
-                    _pin.Description = "坐标： （" + _tmp_loc.lat + "," + _tmp_loc.lon + ")";
-
-
+                    var _pin = __map.makePinPoiSki(_tmp_loc);
                     _layer.push(_pin);
 
                     if(_enable_bound) {
-                        _locs.push(_pin);
+                        _locs.push(_pin.getLocation());
                     }
                 } catch (e) { console.log(e); }
             }

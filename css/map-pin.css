@@ -150,4 +150,82 @@ span.gwk-pin-dest-39 {
 .gwk-dest-title {
     vertical-align:10px;
 }
+
+/* infobox icons */
+span[class^=gwk-infobx-poi-] {
+    background: url("/images/map_menu_icons/gwk-infobox-70.png") no-repeat 0 0;
+    /*background-size: 100% auto;*/
+    width: 70px!important;
+    height: 92px!important;
+    display: inline-block;
+    zoom: 50%;
+}
+
+span.gwk-infobx-poi-hiking {
+    background-position: 0 -92px!important;
+}
+
+span.gwk-infobx-poi-surfing {
+    background-position: 0 -184px!important;
+}
+
+span.gwk-infobx-poi-sky-diving {
+    background-position: 0 -276px!important;
+}
+
+span.gwk-infobx-poi-skiing {
+    background-position: 0 -368px!important;
+}
+
+span.gwk-infobx-poi-camping {
+    background-position: 0 -920px!important;
+}
+
+span.gwk-infobx-poi-fishing {
+    background-position: 0 -736px!important;
+}
+
+span.gwk-infobx-poi-diving {
+    background-position: 0 -828px!important;
+}
+
+span.gwk-infobx-poi-running {
+    background-position: 0 -1104px!important;
+}
+
+span.gwk-infobx-poi-all {
+    background-position: 0 -1196px!important;
+}
+
+span.gwk-infobx-poi-photography {
+    background-position: 0 -1012px!important;
+}
+
+span.gwk-infobx-poi-rock-climbing {
+    background-position: 0 -460px!important;
+}
+
+span.gwk-infobx-poi-hunting {
+    background-position: 0 -552px!important;
+}
+
+
+.gwk-dest-title {
+    vertical-align:10px;
+}
+
 /* end add by jason */
+
+
+.box-infobox {
+    width: auto;
+    min-width: 240px!important;
+    height:48px!important;
+    border: 1px solid #548F1E;
+    background-color: white;
+    z-index: 99999999;
+    display: inline-block;
+}
+.box-infobox span {
+    vertical-align: middle;
+}
