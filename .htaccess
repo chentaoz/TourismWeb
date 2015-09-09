@@ -29,7 +29,7 @@ Allow from 108.24.90.252  #lin2
 Allow from 69.249.187.231 #daisy
 Allow from 72.86.173.49 #vicki
 #Allow from 73.141.79.199 #zhang
-Allow from 71.230.134.174 #zhang
+Allow from 71.230.134.174 #zhang 71.230.134.174
 Allow from 68.82.182.252 #cao
 Allow from 69.249.38.235 #philly office
 Allow from 104.236.24.32 #gowildkid.com
