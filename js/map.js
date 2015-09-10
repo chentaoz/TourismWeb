@@ -1,8 +1,9 @@
 /**
- * Created by qiangli on 15/8/4.
+ * Created by 野孩子杰森 on 15/8/4.
+ * email: jason.li@zoompoint.net
  */
 
-var __map = {
+var GwkMapController = {
 
     /*
      * config start
@@ -10,18 +11,22 @@ var __map = {
     map : null,
     zoom : 10,
     default_location : new Microsoft.Maps.Location(39.9500, -75.1667),
+
     default_map_type : Microsoft.Maps.MapTypeId.road,
     bing_map_key : 'Avzz40HI34eq77CY-xHxkno6ysgzB8_74fyxlmIncDcIPId4LlOMm0GqkglhFVLA',
+
     init_user_location : null,
     default_cusor : null,
+    enable_bound : false,
 
-    geolocationLayer : new Microsoft.Maps.EntityCollection({zIndex: 1001}),
-    destLayer : new Microsoft.Maps.EntityCollection({zIndex: 1002}),
-    ntnParkLayer : new Microsoft.Maps.EntityCollection({zIndex: 1003}),
-    activityLayer : new Microsoft.Maps.EntityCollection({zIndex: 1004}),
+    GwkUserLayer :      new Microsoft.Maps.EntityCollection({zIndex: 1001}),
+    // GwkPOILayer :       new Microsoft.Maps.EntityCollection({zIndex: 1002}),
+    GwkPOILayer :       new Object(),
+    GwkUtilLayer :      new Microsoft.Maps.EntityCollection({zIndex: 1003}),
+    GwkActivityLayer :  new Microsoft.Maps.EntityCollection({zIndex: 1004}),
+    GwkInfoboxLayer :   new Microsoft.Maps.EntityCollection({zIndex: 1005}),
 
-    infoBoxLayer : new Microsoft.Maps.EntityCollection({zIndex: 1005}),
-    destInfobox : new Microsoft.Maps.Infobox(
+    GwkPoiInfobox :     new Microsoft.Maps.Infobox(
         new Microsoft.Maps.Location(0, 0),
         {
             visible: false,
@@ -30,7 +35,7 @@ var __map = {
             zIndex: 99998,
         }
     ),
-    actInfoBox : new Microsoft.Maps.Infobox(
+    GwkActivityInfobox : new Microsoft.Maps.Infobox(
         new Microsoft.Maps.Location(0, 0),
         {
             visible: false,
@@ -46,35 +51,39 @@ var __map = {
      config ends
      */
 
-    init : function () {
+    init : function (_callback) {
         Microsoft.Maps.loadModule('Microsoft.Maps.Themes.BingTheme', { callback: function () {
-            __map.init_map();
-            __map.init_layers();
-            __map.init_events();
-            __map.init_coords();
+            GwkMapController.initMap();
+            GwkMapController.initLayers();
+            GwkMapController.initEvents();
+            GwkMapController.initCoords();
 
-            __map.geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(__map.map);
+            GwkMapController.geoLocationProvider = new Microsoft.Maps.GeoLocationProvider(GwkMapController.map);
+            GwkMapController.default_cusor = GwkMapController.map.getRootElement().style.cursor;
 
-            __map.default_cusor = __map.map.getRootElement().style.cursor;
+            GwkMapController.handleMapViewChgEvent();
+            GwkMapController.mapFitWindow();
+
+            _callback();
         } });
     },
 
     /*
      initialization
      */
-    init_map : function () {
-        __map.map = new Microsoft.Maps.Map(
+    initMap : function () {
+        GwkMapController.map = new Microsoft.Maps.Map(
             document.getElementById('map'),
             {
-                credentials: __map.bing_map_key,
+                credentials: GwkMapController.bing_map_key,
                 //theme: new Microsoft.Maps.Themes.BingTheme(),
                 showScalebar: true,
-                center: "undefined" === typeof _init_geo_loc ?  __map.default_location : _init_geo_loc,
-                zoom: __map.zoom,
+                center: "undefined" === typeof _init_geo_loc ?  GwkMapController.default_location : _init_geo_loc,
+                zoom: GwkMapController.zoom,
                 width: screen.width,
                 height: screen.height,
                 disablePanning: false,
-                mapTypeId: __map.default_map_type,
+                mapTypeId: GwkMapController.default_map_type,
                 showBreadcrumb: true,
                 tilebuffer: 3,
                 backgroundColor: "#548F1E",
@@ -88,7 +97,7 @@ var __map = {
             }
         );
 
-        __map.map.getZoomRange = function ()
+        GwkMapController.map.getZoomRange = function ()
         {
             return {
                 max:      18,
@@ -97,47 +106,47 @@ var __map = {
         };
     },
 
-    init_coords : function () {
+    initCoords : function () {
         var _init_local_lat = $.cookie('latitude');
         var _init_local_lon = $.cookie('longitude');
         if(undefined != _init_local_lat && undefined != _init_local_lon) {
-            __map.init_user_location = new Microsoft.Maps.Location(_init_local_lat, _init_local_lon);
+            GwkMapController.init_user_location = new Microsoft.Maps.Location(_init_local_lat, _init_local_lon);
         }
     },
 
-    init_layers : function () {
-        if(null == __map.map) {
-            __map.init_map();
+    initLayers : function () {
+        if(null == GwkMapController.map) {
+            GwkMapController.initMap();
         }
 
-        __map.infoBoxLayer.push(__map.destInfobox);
-        __map.infoBoxLayer.push(__map.actInfoBox);
+        GwkMapController.GwkInfoboxLayer.push(GwkMapController.GwkPoiInfobox);
+        GwkMapController.GwkInfoboxLayer.push(GwkMapController.GwkActivityInfobox);
 
-        __map.map.entities.push(__map.destLayer);
-        __map.map.entities.push(__map.infoBoxLayer);
-        __map.map.entities.push(__map.geolocationLayer);
-        __map.map.entities.push(__map.ntnParkLayer);
-        __map.map.entities.push(__map.activityLayer);
+        // GwkMapController.map.entities.push(GwkMapController.GwkPOILayer);
+        GwkMapController.map.entities.push(GwkMapController.GwkInfoboxLayer);
+        GwkMapController.map.entities.push(GwkMapController.GwkUserLayer);
+        GwkMapController.map.entities.push(GwkMapController.GwkUtilLayer);
+        GwkMapController.map.entities.push(GwkMapController.GwkActivityLayer);
     },
 
-    init_events : function () {
-        if(null == __map.map) {
-            __map.init_map();
+    initEvents : function () {
+        if(null == GwkMapController.map) {
+            GwkMapController.initMap();
         }
 
-        Microsoft.Maps.Events.addHandler(__map.map, 'click', __map.handleMapClickEvent);
-        Microsoft.Maps.Events.addHandler(__map.map, 'viewchangeend', __map.handleMapViewChgEvent);
-        Microsoft.Maps.Events.addHandler(__map.map, 'mousemove', __map.handleMapMouseMvEvent);
+        Microsoft.Maps.Events.addHandler(GwkMapController.map, 'click', GwkMapController.handleMapClickEvent);
+        Microsoft.Maps.Events.addHandler(GwkMapController.map, 'viewchangeend', GwkMapController.handleMapViewChgEvent);
+        Microsoft.Maps.Events.addHandler(GwkMapController.map, 'mousemove', GwkMapController.handleMapMouseMvEvent);
 
         $(window).resize(function() {
             try {
-                __map.mapFitWindow();
+                GwkMapController.mapFitWindow();
             } catch(e) {console.log(e);}
         });
     },
 
     mapFitWindow : function () {
-        __map.map.setOptions({
+        GwkMapController.map.setOptions({
             height: $(window).height(),
             width:  $(window).width()
         });
@@ -145,12 +154,12 @@ var __map = {
 
     handleMapMouseMvEvent : function (e) {
         if(e.targetType === 'pushpin') {
-            __map.map.getRootElement().style.cursor = 'pointer';
+            GwkMapController.map.getRootElement().style.cursor = 'pointer';
 
             if(e.target.hasOwnProperty('HtmlContent')) {
-                if(!__map.destInfobox.getOptions().visible) {
-                    __map.destInfobox.setLocation(e.target.getLocation());
-                    __map.destInfobox.setOptions({
+                if(!GwkMapController.GwkPoiInfobox.getOptions().visible) {
+                    GwkMapController.GwkPoiInfobox.setLocation(e.target.getLocation());
+                    GwkMapController.GwkPoiInfobox.setOptions({
                         width: 240,
                         height: 180,
                         visible: true,
@@ -160,18 +169,18 @@ var __map = {
                 }
             }
         } else {
-            if(__map.destInfobox.getOptions().visible) {
-                __map.destInfobox.setOptions({
+            if(GwkMapController.GwkPoiInfobox.getOptions().visible) {
+                GwkMapController.GwkPoiInfobox.setOptions({
                     visible: false
                 });
             }
-            __map.map.getRootElement().style.cursor = __map.default_cusor;
+            GwkMapController.map.getRootElement().style.cursor = GwkMapController.default_cusor;
         }
     },
 
     handleMapClickEvent : function (e) {
-        __map.destInfobox.setOptions({ visible: false});
-        __map.actInfoBox.setOptions({ visible: false});
+        GwkMapController.GwkPoiInfobox.setOptions({ visible: false});
+        GwkMapController.GwkActivityInfobox.setOptions({ visible: false});
 
         if (e.targetType == 'pushpin') {
             var _pin = e.target;
@@ -179,16 +188,16 @@ var __map = {
 
             if(_pin.hasOwnProperty('POIType')) {
                 if('destination' == _pin.POIType) {
-                    this._ibox = __map.destInfobox;
+                    this._ibox = GwkMapController.GwkPoiInfobox;
                 } else if('activity' == _pin.POIType) {
-                    this._ibox = __map.actInfoBox;
+                    this._ibox = GwkMapController.GwkActivityInfobox;
                 }
             } else {
-                this._ibox = __map.destInfobox;
+                this._ibox = GwkMapController.GwkPoiInfobox;
             }
 
             this._ibox.setLocation(_pin.getLocation());
-            __map.map.setView({ center: _pin.getLocation() });
+            GwkMapController.map.setView({ center: _pin.getLocation() });
 
 
             if(_pin.hasOwnProperty('HtmlContent')) {
@@ -205,7 +214,7 @@ var __map = {
                     $('#modal-poi').find('div.modal-body>div').html(_pin.raw_data.resort_name);
                     $('#modal-poi').modal('toggle');
                     $('body').removeClass('modal-open');
-                    __map.destInfobox.setOptions({ visible: false});
+                    GwkMapController.GwkPoiInfobox.setOptions({ visible: false});
                 }
 
             } else {
@@ -216,39 +225,39 @@ var __map = {
                 });
             }
         } else if (e.targetType == 'map') {
-            // __map.toggleDestPanel();
+            // GwkMapController.toggleDestPanel();
             $('.panel-to-toggle').slideUp();
         }
     },
 
     captureUserCoords : function () {
-        __map.geoLocationProvider.getCurrentPosition({successCallback:function(_pos) {
-            __map.init_user_location = new Microsoft.Maps.Location(_pos.position.coords.latitude, _pos.position.coords.longitude);
+        GwkMapController.geoLocationProvider.getCurrentPosition({successCallback:function(_pos) {
+            GwkMapController.init_user_location = new Microsoft.Maps.Location(_pos.position.coords.latitude, _pos.position.coords.longitude);
 
-            $.cookie('latitude',    __map.init_user_location.latitude,  { expires: 7, path: '/' });
-            $.cookie('longitude',   __map.init_user_location.longitude, { expires: 7, path: '/' });
+            $.cookie('latitude',    GwkMapController.init_user_location.latitude,  { expires: 7, path: '/' });
+            $.cookie('longitude',   GwkMapController.init_user_location.longitude, { expires: 7, path: '/' });
         }});
     },
 
     setUserLocCenter : function () {
-        if(null == __map.init_user_location) {
-            __map.captureUserCoords();
+        if(null == GwkMapController.init_user_location) {
+            GwkMapController.captureUserCoords();
         }
 
-        __map.map.setView({
-            center: __map.init_user_location,
+        GwkMapController.map.setView({
+            center: GwkMapController.init_user_location,
         });
 
-        __map.geolocationLayer.clear();
-        var _geo_pin = new Microsoft.Maps.Pushpin(__map.init_user_location, {
+        GwkMapController.GwkUserLayer.clear();
+        var _geo_pin = new Microsoft.Maps.Pushpin(GwkMapController.init_user_location, {
             text: "",
             typeName: "gwk-pin-dest-mypos",
             title: "您目前的位置"
         });
         // _geo_pin.Title = "您目前的位置";
-        _geo_pin.Description = "坐标： （" + __map.init_user_location.latitude + "," + __map.init_user_location.longitude + ")";
+        _geo_pin.Description = "坐标： （" + GwkMapController.init_user_location.latitude + "," + GwkMapController.init_user_location.longitude + ")";
 
-        __map.geolocationLayer.push(_geo_pin);
+        GwkMapController.GwkUserLayer.push(_geo_pin);
     },
 
     /*
@@ -256,68 +265,51 @@ var __map = {
      */
 
     toggleDestPanel : function (_node) {
-        __map.togglePanel('panel-dests');
+        GwkMapController.togglePanel('panel-dests');
     },
 
     togglePoiPanel : function () {
-        __map.togglePanel('panel-pois');
+        GwkMapController.togglePanel('panel-pois');
     },
 
     toggleActivityRcmdPanel : function (_node) {
-        __map.togglePanel('panel-act-recmd');
+        GwkMapController.togglePanel('panel-act-recmd');
     },
 
     toggleSearchPanel : function (_node) {
-        __map.togglePanel('panel-search');
+        GwkMapController.togglePanel('panel-search');
     },
 
     togglePanel : function (_id, _node) {
         $('.panel-to-toggle').slideUp();
 
         $('.btn-to-toggle').each(function(){
-            __map.optUnSelect(this);
+            GwkMapController.optUnSelect(this);
         });
-        __map.optSelect($(_node).find('input.ctr-btn-state'));
+        GwkMapController.optSelect($(_node).find('input.ctr-btn-state'));
 
         if($('#'.concat(_id)).is(':hidden')) {
             $('#'.concat(_id)).slideDown();
         } else {
             $('#'.concat(_id)).slideUp();
-            __map.optUnSelect($(_node).find('input.ctr-btn-state'));
+            GwkMapController.optUnSelect($(_node).find('input.ctr-btn-state'));
         }
     },
 
     toggleNationalParkData : function () {
         if('1' == $('input#toggleNP').val()) {
-            __map.ntnParkLayer.clear();
+            GwkMapController.GwkUtilLayer.clear();
             $('input#toggleNP').val("0");
         } else {
             $.get(
                 '/ws/endpoint/get_national_parks',
                 function(_data) {
-                    __map.renderDests(_data, __map.ntnParkLayer, true, "gwk-pin-dest-np");
+                    GwkMapController.renderDests(_data, GwkMapController.GwkUtilLayer, true, "gwk-pin-dest-np");
                 });
             $('input#toggleNP').val("1");
         }
     },
 
-    togglePOIData : function (_type, _node) {
-        var _state_node = $(_node).find('input[type="hidden"]');
-        if('1' == _state_node.val()) {
-            __map.ntnParkLayer.clear();
-            _state_node.val("0");
-        } else {
-            $.get(
-                'http://activity.gowildkid.com/user/ws/'+ $.base64.encode(JSON.stringify({
-                    func: 'pull_poi',
-                    type: 'ski_resort'
-                })),
-                function(_data) {
-                    __map.renderPois (_type, _data, __map.ntnParkLayer, true, "gwk-pin-dest-np");
-                });
-            $('input#toggleNP').val("1");
-        }
-    },
 
     /*
      destinations
@@ -327,7 +319,7 @@ var __map = {
             '/ws/endpoint/get_dests',
             {'filter_sports[]': 'all'},
             function(_data) {
-                __map.renderDests(_data, __map.destLayer, false, null);
+                GwkMapController.renderDests(_data, GwkMapController.GwkPOILayer, false, null);
             });
     },
 
@@ -336,7 +328,7 @@ var __map = {
 
         if(0 < _keyword.length) {
             $.post('/ws/endpoint/search_dest_by_keywords?keyword='+encodeURIComponent($(_node).val()), function(data){
-                __map.renderDests(data,__map.destLayer,true, null);
+                GwkMapController.renderDests(data,GwkMapController.GwkPOILayer,true, null);
             },'json');
         }
     },
@@ -354,7 +346,7 @@ var __map = {
             }
         });
 
-        __map.updateDestMap(true);
+        GwkMapController.updateDestMap(true);
     },
 
     updateDestMap : function (_enableBound) {
@@ -364,7 +356,7 @@ var __map = {
             '/ws/endpoint/get_dests',
             $('form#form-map-filter').serialize(),
             function(_data) {
-                __map.renderDests(_data, __map.destLayer, _enable_bound, null);
+                GwkMapController.renderDests(_data, GwkMapController.GwkPOILayer, _enable_bound, null);
             });
     },
 
@@ -405,7 +397,7 @@ var __map = {
                             _tmp_loc.hasOwnProperty('name')?_tmp_loc.name:(
                                 _tmp_loc.hasOwnProperty('title')?_tmp_loc.title:'没有标题')) + '</a>';
 
-                    _pin.Description = __map.strip_tags(_tmp_loc.description).substr(0, 80) + "...";
+                    _pin.Description = GwkMapController.strip_tags(_tmp_loc.description).substr(0, 80) + "...";
 
                     _pin.POIType = 'destination';
 
@@ -421,14 +413,21 @@ var __map = {
             if(_enable_bound && 0 < _data.length) {
                 if(1 < _locs.length) {
                     var viewBoundaries = Microsoft.Maps.LocationRect.fromLocations(_locs);
-                    // __map.map.setView({bounds: viewBoundaries, padding: 100});
+                    // GwkMapController.map.setView({bounds: viewBoundaries, padding: 100});
 
                 } else if (1 == _locs.length) {
-                    __map.map.setView({center: _locs[0]});
+                    GwkMapController.map.setView({center: _locs[0]});
                 }
             }
         }
     },
+
+
+
+
+
+
+
     makePinPoiSki : function (_poi) {
         var _pin_loc = new Microsoft.Maps.Location(_poi.lat, _poi.lon);
         var _pin = new Microsoft.Maps.Pushpin(_pin_loc, {
@@ -444,35 +443,92 @@ var __map = {
 
         return _pin;
     },
-    renderPois : function (_type, _data, _layer, _enable_bound) {
-        // console.log(_data);
 
+    //GwkMapController.renderPois (_type, _data)
+    renderPois : function (_type, _data) {
         if(_data) {
-            _layer.clear();
-            _locs = [];
-            for(var i=0; i<_data.length; i++) {
-                try {
-                    var _tmp_loc = _data[i];
-                    var _pin = __map.makePinPoiSki(_tmp_loc);
-                    _layer.push(_pin);
+            if(GwkMapController.GwkPOILayer.hasOwnProperty(_type)) {
+                GwkMapController.GwkPOILayer[_type].setOptions({visiable: true});
+            } else {
+                GwkMapController.GwkPOILayer[_type] = new Microsoft.Maps.EntityCollection({zIndex: 1002});
+                GwkMapController.map.entities.push(GwkMapController.GwkPOILayer[_type]);
 
-                    if(_enable_bound) {
-                        _locs.push(_pin.getLocation());
+                _locs = [];
+                for(var i=0; i<_data.length; i++) {
+                    try {
+                        var _tmp_loc = _data[i];
+
+                        if('ski_resort' == _type) {
+                            var _pin = GwkMapController.makePinPoiSki(_tmp_loc);
+                            GwkMapController.GwkPOILayer[_type].push(_pin);
+
+                            if(GwkMapController.enable_bound) {
+                                _locs.push(_pin.getLocation());
+                            }
+                        }
+
+                    } catch (e) { console.log(e); }
+                }
+
+                if(GwkMapController.enable_bound && 0 < _data.length) {
+                    if(1 < _locs.length) {
+                        var viewBoundaries = Microsoft.Maps.LocationRect.fromLocations(_locs);
+                        GwkMapController.map.setView({bounds: viewBoundaries, padding: 100});
+
+                    } else if (1 == _locs.length) {
+                        GwkMapController.map.setView({center: _locs[0]});
                     }
-                } catch (e) { console.log(e); }
-            }
-
-            if(_enable_bound && 0 < _data.length) {
-                if(1 < _locs.length) {
-                    var viewBoundaries = Microsoft.Maps.LocationRect.fromLocations(_locs);
-                    // __map.map.setView({bounds: viewBoundaries, padding: 100});
-
-                } else if (1 == _locs.length) {
-                    __map.map.setView({center: _locs[0]});
                 }
             }
         }
     },
+
+    togglePOIData : function (_type, _node) {
+        try {
+            var _state_node = $(_node).find('input.togglePoiState');
+            if('1' == _state_node.val()) {
+                if(GwkMapController.GwkPOILayer.hasOwnProperty(_type)) {
+                    GwkMapController.GwkPOILayer[_type].setOptions({visible: false});
+                }
+                _state_node.val("0");
+                $(_node).css('border-bottom', '2px solid #fff').css('font-weight', 'bold');
+
+            } else {
+                if(GwkMapController.GwkPOILayer.hasOwnProperty(_type)) {
+                    GwkMapController.GwkPOILayer[_type].setOptions({visible: true});
+                } else {
+                    $('body').css('cursor', "wait");
+                    $.get(
+                        'http://activity.gowildkid.com/user/ws/'+ $.base64.encode(JSON.stringify({
+                            func: 'pull_poi',
+                            type: _type
+                        })),
+                        function(_data) {
+                            GwkMapController.renderPois (_type, _data);
+                            $('body').css('cursor', "auto");
+                        });
+                }
+
+                _state_node.val("1");
+                $(_node).css('border-bottom', '2px solid #ccc').css('font-weight', 'normal');
+            }
+        } catch(e) { console.log(e); }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /*
      activities
@@ -494,27 +550,27 @@ var __map = {
     handleMapViewChgEvent : function () {
         $.get("//activity.gowildkid.com/user/ws/".concat($.base64.encode(JSON.stringify({
             func: 'ajax_events_query',
-            left_up: __map.map.getBounds().getNorthwest(),
-            right_lower: __map.map.getBounds().getSoutheast()}))), function(_data) {
-            __map.renderActivities (_data, __map.activityLayer, true);
+            left_up: GwkMapController.map.getBounds().getNorthwest(),
+            right_lower: GwkMapController.map.getBounds().getSoutheast()}))), function(_data) {
+            GwkMapController.renderActivities (_data, GwkMapController.GwkActivityLayer, true);
         });
 
     },
 
     pullActivities : function (_node) {
         var _toggle_node = $('input#toggleAct');
-        // __map.destLayer.clear();
+        // GwkMapController.GwkPOILayer.clear();
 
         if('0' == _toggle_node.val()) {
             $.get("//activity.gowildkid.com/user/ws/".concat($.base64.encode(JSON.stringify({
                 func: 'ajax_events_query',
-                left_up: __map.map.getBounds().getNorthwest(),
-                right_lower: __map.map.getBounds().getSoutheast()}))), function(_data) {
-                __map.renderActivities (_data, __map.activityLayer, true);
+                left_up: GwkMapController.map.getBounds().getNorthwest(),
+                right_lower: GwkMapController.map.getBounds().getSoutheast()}))), function(_data) {
+                GwkMapController.renderActivities (_data, GwkMapController.GwkActivityLayer, true);
             });
             _toggle_node.val('1');
         } else {
-            __map.activityLayer.clear();
+            GwkMapController.GwkActivityLayer.clear();
             _toggle_node.val('0');
         }
     },
@@ -546,12 +602,12 @@ var __map = {
                     _pin.Eid = _tmp_loc.id;
                     _pin.POIType = 'activity';
 
-                    _pin.Description = __map.strip_tags(_tmp_loc.description).substr(0, 80) + "...";
+                    _pin.Description = GwkMapController.strip_tags(_tmp_loc.description).substr(0, 80) + "...";
 
                     _pin.HtmlContent = "<div class='box' style='width:360px; height:auto; border: 1px solid #548F1E; background-color: white; z-index: 99999999; display: block;'>" +
                         '<div class="panel panel-default" style="height: 100%;">' +
                         '<div class="panel-heading">' +
-                        '<h3 class="panel-title">' + _pin.Title + '<span onclick="javascript:__map.actInfoBox.setOptions({ visible: false});" style="float: right;">X</span></h3>' +
+                        '<h3 class="panel-title">' + _pin.Title + '<span onclick="javascript:GwkMapController.GwkActivityInfobox.setOptions({ visible: false});" style="float: right;">X</span></h3>' +
                         '</div>' +
                         '<div class="panel-body">' +
                         _pin.Description +
@@ -572,7 +628,7 @@ var __map = {
                             var _new_node_act_recmd = $('<div class="rcmd-act-cell" onclick="javascript:location.href=\'http://activity.gowildkid.com/activity/detail/' + _pin.Eid + '\'">' +
                                 '<img class="act-infobox-image" src="http://activity.gowildkid.com/activity/thumb/' + _pin.Eid + '.jpg" />' +
                                 '<p style="width:120px;white-space:nowrap;">' +
-                                __map.strip_tags(_pin.Title).substr(0, 8) +
+                                GwkMapController.strip_tags(_pin.Title).substr(0, 8) +
                                 '</p></div>');
 
 
@@ -585,10 +641,10 @@ var __map = {
             if(_enable_bound && 0 < _data.length) {
                 if(1 < _locs.length) {
                     // var viewBoundaries = Microsoft.Maps.LocationRect.fromLocations(_locs);
-                    // __map.map.setView({bounds: viewBoundaries, padding: 100});
+                    // GwkMapController.map.setView({bounds: viewBoundaries, padding: 100});
 
                 } else if (1 == _locs.length) {
-                    // __map.map.setView({center: _locs[0]});
+                    // GwkMapController.map.setView({center: _locs[0]});
                 }
             }
 
@@ -643,7 +699,7 @@ var __map = {
     },
 }
 
-__map.init();
+
 
 // typeahead
 try {
@@ -655,13 +711,13 @@ try {
             if('0' == _self.val()) {
                 if(0 == _self.attr('id').indexOf('state-map-')) {
                     $('input[id^="state-map-"]').each(function(){
-                        __map.optUnSelect(this);
+                        GwkMapController.optUnSelect(this);
                     });
                 }
 
-                __map.optSelect(_self);
+                GwkMapController.optSelect(_self);
             } else {
-                __map.optUnSelect(_self);
+                GwkMapController.optUnSelect(_self);
             }
         }
     });
@@ -672,21 +728,15 @@ try {
  */
 $(document).ready(function() {
     try {
-        __map.handleMapViewChgEvent();
-        __map.mapFitWindow();
-    } catch(e) {
-        console.log(e);
-    }
+        GwkMapController.init(function() {
+            if(null == GwkMapController.init_user_location) {
+                GwkMapController.captureUserCoords();
+            }
+            // GwkMapController.map.setView({zoom: 8});
+            GwkMapController.setUserLocCenter();
+        });
+    } catch (e) { console.log(e); }
 
-    try {
-        if(Modernizr.touch) {
-            // $('#map-menu-content').collapse();
-        } else {
-            // do nothing
-        }
-    } catch (e) {
-
-    }
 
     $("#navbar").on("click", "li", function(event){
         $('#navbar').collapse('hide');
@@ -703,17 +753,7 @@ $(document).ready(function() {
         console.log(e);
     }
 
-    try {
-        if(null == __map.init_user_location) {
-            __map.captureUserCoords();
-        }
-        // __map.map.setView({zoom: 8});
-        __map.setUserLocCenter();
-    } catch(e) {
-        console.log(e);
-    }
-
-    // __map.optSelect($('input#state-map-road'));
+    // GwkMapController.optSelect($('input#state-map-road'));
     try {
         $('body').on('click', function (e) {
             $('[data-toggle="popover"]').each(function () {
