@@ -108,6 +108,7 @@
         <script type="text/javascript" src="http://dev.ditu.live.com/mapcontrol/mapcontrol.ashx?v=7.0"></script>
     <?php endif; ?>
     <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=ngt"></script>
+
 </head>
 <body style="background-color: #F0F0F0;">
 <div class="homepage hidden-sm hidden-xs">
@@ -187,20 +188,20 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="ul-opts-sys">
-                    <li data-container="body" data-toggle="popover" data-placement="left" data-content='<i onclick="javascript:GwkMapController.map.setView({mapTypeId:Microsoft.Maps.MapTypeId.birdseye});" class="fa fa-2x fa-globe fc-main"></i><hr style="margin:0!important;" /><i onclick="javascript:GwkMapController.map.setView({mapTypeId:Microsoft.Maps.MapTypeId.road});" class="fa fa-2x fa-road fc-main"></i>'>
+                    <li data-container="body" data-toggle="popover" data-placement="left" data-content='<i onclick="javascript:_ctrl.map.setView({mapTypeId:Microsoft.Maps.MapTypeId.birdseye});" class="fa fa-2x fa-globe fc-main"></i><hr style="margin:0!important;" /><i onclick="javascript:_ctrl.map.setView({mapTypeId:Microsoft.Maps.MapTypeId.road});" class="fa fa-2x fa-road fc-main"></i>'>
                         <input type="hidden" name="state-map-birdseye" id="state-map-birdseye" class="ctr-btn-state" value="0" />
                         <i class="fa fa-2x fa-globe"></i>
                     </li>
-                    <li onclick="javascript:try{ GwkMapController.setUserLocCenter(); } catch(e) {console.log(e); }" title="定位">
+                    <li onclick="javascript:try{ _ctrl.helper.setUserLocCenter(); } catch(e) {console.log(e); }" title="定位">
                         <i class="fa fa-2x fa-location-arrow"></i>
                     </li>
                     <li class="hide" onclick="javascript:$('#map-menu-content').collapse('hide');"  title="关闭筛选器">
                         <i class="fa fa-2x fa-times"></i>
                     </li>
                     <li>
-                        <i class="fa fa-2x fa-plus" onclick="javascript:GwkMapController.map.setView({zoom:GwkMapController.map.getZoom() + 1});"></i>
+                        <i class="fa fa-2x fa-plus" onclick="javascript:_ctrl.map.setView({zoom:_ctrl.map.getZoom() + 1});"></i>
                         <hr style="margin:0!important;" />
-                        <i class="fa fa-2x fa-minus" onclick="javascript:GwkMapController.map.setView({zoom:GwkMapController.map.getZoom() - 1});"></i>
+                        <i class="fa fa-2x fa-minus" onclick="javascript:_ctrl.map.setView({zoom:_ctrl.map.getZoom() - 1});"></i>
                     </li>
                 </ul>
             </div>
@@ -219,7 +220,7 @@
                                 <i class="fa fa-search"></i>
                             </button>
                         </span>
-                        <input type="text" id="ipt-typeahead-dest" onkeyup="javascript:GwkMapController.searchDest(this)" class="form-control typeahead" placeholder="目的地，地址，活动等">
+                        <input type="text" id="ipt-typeahead-dest" onkeyup="javascript:_ctrl.deprecated.searchDest(this)" class="form-control typeahead" placeholder="目的地，地址，活动等">
                     </div>
 
                     <div class="collapse in" id="map-menu-content" style="margin-top:6px;">
@@ -227,13 +228,13 @@
                             <div id="menu-btn-ctn" class="container">
                                 <div class="row">
                                     <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="menu-btn-np">
-                                            <i onclick="javascript:GwkMapController.togglePoiPanel ();" class="icon-gwk-btn-poi" title="景点和服务设施" data-toggle="tooltip" data-placement="bottom" ></i>
+                                            <i onclick="javascript:_ctrl.toggle.togglePoiPanel ();" class="icon-gwk-btn-poi" title="景点和服务设施" data-toggle="tooltip" data-placement="bottom" ></i>
                                     </span>
                                     <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="menu-btn-dest">
-                                            <i onclick="javascript:GwkMapController.toggleDestPanel(this);" class="icon-gwk-btn-dest" title="目的地" data-toggle="tooltip" data-placement="bottom" ></i>
+                                            <i onclick="javascript:_ctrl.toggle.toggleDestPanel(this);" class="icon-gwk-btn-dest" title="目的地" data-toggle="tooltip" data-placement="bottom" ></i>
                                     </span>
                                     <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="menu-btn-activity">
-                                            <i onclick="javascript:GwkMapController.pullActivities();GwkMapController.toggleActivityRcmdPanel();" class="icon-gwk-btn-activity" title="活动" data-toggle="tooltip" data-placement="bottom" ></i>
+                                            <i onclick="javascript:_ctrl.activity.pull();_ctrl.toggle.toggleActivityRcmdPanel();" class="icon-gwk-btn-activity" title="活动" data-toggle="tooltip" data-placement="bottom" ></i>
                                     </span>
                                 </div>
                             </div>
@@ -242,21 +243,21 @@
                                     <div class="panel-body" style="">
 
                                         <ul class="ul-opts hide">
-                                            <li onclick="javascript:GwkMapController.toggleNationalParkData();" data-toggle="tooltip" data-placement="top" title="国家公园">
+                                            <li onclick="javascript:_ctrl.toggle.toggleNationalParkData();" data-toggle="tooltip" data-placement="top" title="国家公园">
                                                 <input type="hidden" name="state-national-park" id="state-national-park" class="ctr-btn-state" value="0" />
                                                 <input type="hidden" name="toggleNP" id="toggleNP" value="0" />
                                                 国家公园
                                             </li>
-                                            <li onclick="javascript:GwkMapController.toggleDestPanel(this);" data-toggle="tooltip" data-placement="top" title="目的地">
+                                            <li onclick="javascript:_ctrl.toggle.toggleDestPanel(this);" data-toggle="tooltip" data-placement="top" title="目的地">
                                                 <input type="hidden" name="state-dest" id="state-dest" class="ctr-btn-state btn-to-toggle" value="0" />
                                                 <i class="fa fa-2x fa-map-signs"></i>
                                             </li>
-                                            <li onclick="javascript:GwkMapController.pullActivities();GwkMapController.toggleActivityRcmdPanel();" data-toggle="tooltip" data-placement="top" title="活动">
+                                            <li onclick="javascript:_ctrl.activity.pull();_ctrl.toggle.toggleActivityRcmdPanel();" data-toggle="tooltip" data-placement="top" title="活动">
                                                 <input type="hidden" name="state-activity" id="state-activity" class="ctr-btn-state" value="0" />
                                                 <input type="hidden" name="toggleAct" id="toggleAct" value="0" />
                                                 <i class="fa fa-2x fa-pied-piper-alt"></i>
                                             </li>
-                                            <li onclick="javascript:GwkMapController.toggleSearchPanel(this);" data-toggle="tooltip" data-placement="top" title="搜索">
+                                            <li onclick="javascript:_ctrl.toggle.toggleSearchPanel(this);" data-toggle="tooltip" data-placement="top" title="搜索">
                                                 <input type="hidden" name="state-search" id="state-search" class="ctr-btn-state btn-to-toggle" value="0" />
                                                 <i class="fa fa-2x fa-search-plus"></i>
                                             </li>
@@ -285,7 +286,7 @@
                                             <ul id="ul-filter-poi">
                                                 <?php if (0): ?>
                                                 <?php foreach($sport_cate as $cate):?>
-                                                    <li onclick="javascript:GwkMapController.pullDestData(this)">
+                                                    <li onclick="javascript:_ctrl.deprecated.pullDestData(this)">
                                                         <span class="gwk-pin-dest-<?php echo $cate['spid'] ?>"> </span>
                                                         <input type="checkbox" style="display: none;" name="filter_sports[]" value="<?php echo $cate['spid'] ?>" />
                                                         <br />
@@ -293,7 +294,7 @@
                                                     </li>
                                                 <?php endforeach; ?>
 
-                                                <li onclick="javascript:GwkMapController.pullDestData(this)">
+                                                <li onclick="javascript:_ctrl.deprecated.pullDestData(this)">
                                                     <span class="gwk-pin-dest-all"> </span>
                                                     <input type="checkbox" style="display: none;" name="filter_sports[]" value="all" />
                                                     <br />
@@ -301,7 +302,7 @@
                                                 </li>
                                                 <?php endif; ?>
 
-                                                <li onclick="javascript:GwkMapController.togglePOIData('ski_resort', this);">
+                                                <li onclick="javascript:_ctrl.toggle.togglePOIData('ski_resort', this);">
                                                     <input type="hidden" value="0" class="togglePoiState" />
                                                     <span class="gwk-pin-dest-ski"> </span>
                                                     <h5>滑雪场</h5>
@@ -328,7 +329,7 @@
                                     <div id="panel-content-poi" class="panel-collapse collapse in">
                                         <div class="panel-body">
                                             <ul id="ul-poi">
-                                                <li onclick="javascript:GwkMapController.toggleNationalParkData();">
+                                                <li onclick="javascript:_ctrl.toggle.toggleNationalParkData();">
                                                     <input type="hidden" value="0" class="togglePoiState" />
                                                     <i class="icon-gwk-poi-national-park" ></i>
                                                     <h5>国家公园</h5>
@@ -350,7 +351,7 @@
 <div class="modal fade" id="modal-poi" role="dialog" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background: lightgrey!important;">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="gridSystemModalLabel"></h4>
             </div>
@@ -380,6 +381,8 @@
 <script src="<?=WWW_domian?>js/Modernizr.js"></script>
 <script src="<?=WWW_domian?>js/imagesloaded.pkgd.min.js"></script>
 <script src="<?=WWW_domian?>js/map.js"></script>
-
+<script type="text/javascript">
+    _ctrl = GwkMapController;
+</script>
 </body>
 </html>
