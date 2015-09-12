@@ -194,8 +194,7 @@ var GwkMapController = {
                     this._ibox = GwkMapController.GwkPoiInfobox;
                 }
 
-                this._ibox.setLocation(_pin.getLocation());
-                GwkMapController.map.setView({ center: _pin.getLocation() });
+
 
 
                 if(_pin.hasOwnProperty('HtmlContent')) {
@@ -222,8 +221,15 @@ var GwkMapController = {
 
                             $('#modal-poi').modal('toggle');
                             $('body').removeClass('modal-open');
+
+                            $('#modal-poi-ctn').css('height', $(document).height() - 120);
+
+                            $('.poi-rating').raty({ starType: 'i', score: 3 });
                         })
                     }
+
+                    this._ibox.setLocation(_pin.getLocation());
+                    GwkMapController.map.setView({ center: _pin.getLocation() });
 
                 } else {
                     this._ibox.setOptions({
