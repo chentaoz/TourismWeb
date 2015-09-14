@@ -25,84 +25,7 @@
     <link rel="stylesheet" href="<?=WWW_domian?>css/map.css">
     <link rel="stylesheet" href="<?=WWW_domian?>css/map-pin.css">
     <link rel="stylesheet" href="<?=WWW_domian?>icomoon/gwk-icon.css">
-    <style>
-        @media (max-width: 980px) {
-            .footer {
-                display: block;
-            }
-        }
-        #navbar.in a {
-            color: #F7F6F6;
-        }
-        .error{color: red !important;}
-        .highlight1 {
-            background: #e0f1df;
-            opacity: 0.9;
-            filter: Alpha(opacity=90); /* IE8 and earlier */
-        }
-        #input-group-search{
-            position: absolute;
-        }
-        .tip_schlay1 {
-            position: relative;
-            z-index: 99;
-            border: 1px solid #c0c0c0;
-            background: #fff;
-        }
-        .tip_schlay1 ul {
-            width: 100%;
-            overflow: hidden;
-        }
-        .tip_schlay1 li {
-            width: 100%;
-            overflow: hidden;
-            border-bottom: 1px solid #ececec;
-        }
-        .tip_schlay1 li a {
-            display: block;
-            height: 32px;
-            overflow: hidden;
-            padding: 0 10px;
-            line-height: 32px;
-            color: #323232;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        .contact-widget {
-            position: fixed;
-            right: 20px;
-            bottom: 155px;
-            width: 80px;
-            height: 150px;
-            text-align: center;
-            border-radius: 2px;
-        }
-        .contact-widget .widget-item:first-child, .backtotop .widget-item:first-child {
-            border-top-left-radius: 2px;
-            border-top-right-radius: 2px;
-        }
-        .contact-widget .widget-item {
-            text-align: center;
-            position: relative;
-            display: block;
-            cursor: pointer;
-            background-color: rgba(0,0,0,0.5);
-            width: 100%;
-            height: 50px;
-            padding: 8px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .contact-widget .widget-item .widget-qrcode, .backtotop .widget-item .widget-qrcode, .contact-widget .widget-item .widget-tel, .backtotop .widget-item .widget-tel {
-            position: absolute;
-            display: none;
-            right: 80px;
-            bottom: 0;
-        }
-        .contact-widget .widget-item .widget-tel img, .backtotop .widget-item .widget-tel img {
-            width: auto;
-            height: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="<?=WWW_domian?>assets/raty/lib/jquery.raty.css">
     <?php echo $js; ?>
     <?php if(false): ?>
         <script type="text/javascript" src="http://dev.ditu.live.com/mapcontrol/mapcontrol.ashx?v=7.0"></script>
@@ -187,23 +110,25 @@
     <div class="box">
         <div class="row">
             <div class="col-md-12">
-                <ul class="ul-opts-sys">
-                    <li data-container="body" data-toggle="popover" data-placement="left" data-content='<i onclick="javascript:_ctrl.map.setView({mapTypeId:Microsoft.Maps.MapTypeId.birdseye});" class="fa fa-2x fa-globe fc-main"></i><hr style="margin:0!important;" /><i onclick="javascript:_ctrl.map.setView({mapTypeId:Microsoft.Maps.MapTypeId.road});" class="fa fa-2x fa-road fc-main"></i>'>
-                        <input type="hidden" name="state-map-birdseye" id="state-map-birdseye" class="ctr-btn-state" value="0" />
-                        <i class="fa fa-2x fa-globe"></i>
-                    </li>
-                    <li onclick="javascript:try{ _ctrl.helper.setUserLocCenter(); } catch(e) {console.log(e); }" title="定位">
-                        <i class="fa fa-2x fa-location-arrow"></i>
-                    </li>
-                    <li class="hide" onclick="javascript:$('#map-menu-content').collapse('hide');"  title="关闭筛选器">
-                        <i class="fa fa-2x fa-times"></i>
-                    </li>
-                    <li>
-                        <i class="fa fa-2x fa-plus" onclick="javascript:_ctrl.map.setView({zoom:_ctrl.map.getZoom() + 1});"></i>
-                        <hr style="margin:0!important;" />
-                        <i class="fa fa-2x fa-minus" onclick="javascript:_ctrl.map.setView({zoom:_ctrl.map.getZoom() - 1});"></i>
-                    </li>
-                </ul>
+                <form id="form-map-opts-sys" onsubmit="javascript:return false;">
+                    <ul class="ul-opts-sys">
+                        <li data-container="body" data-toggle="popover" data-placement="left" data-content='<i onclick="javascript:try{_ctrl.map.setView({mapTypeId:Microsoft.Maps.MapTypeId.birdseye});} catch(e) {alert(e);}" class="fa fa-2x fa-globe fc-main"></i><hr style="margin:0!important;" /><i onclick="javascript:try {_ctrl.map.setView({mapTypeId:Microsoft.Maps.MapTypeId.road});}catch(e){alert(e);}" class="fa fa-2x fa-road fc-main"></i>'>
+                            <input type="hidden" name="state-map-birdseye" id="state-map-birdseye" class="ctr-btn-state" value="0" />
+                            <i class="fa fa-2x fa-globe"></i>
+                        </li>
+                        <li onclick="javascript:try{ _ctrl.helper.setUserLocCenter(); } catch(e) {alert(e); }" title="定位">
+                            <i class="fa fa-2x fa-location-arrow"></i>
+                        </li>
+                        <li class="hide" onclick="javascript:try{$('#map-menu-content').collapse('hide');}catch(e){alert(e);}"  title="关闭筛选器">
+                            <i class="fa fa-2x fa-times"></i>
+                        </li>
+                        <li>
+                            <i class="fa fa-2x fa-plus" onclick="javascript:try{_ctrl.map.setView({zoom:_ctrl.map.getZoom() + 1});}catch(e){alert(e);}"></i>
+                            <hr style="margin:0!important;" />
+                            <i class="fa fa-2x fa-minus" onclick="javascript:try{_ctrl.map.setView({zoom:_ctrl.map.getZoom() - 1});}catch(e){alert(e);}"></i>
+                        </li>
+                    </ul>
+                </form>
             </div>
         </div>
     </div>
@@ -285,21 +210,21 @@
                                         <div class="panel-body">
                                             <ul id="ul-filter-poi">
                                                 <?php if (0): ?>
-                                                <?php foreach($sport_cate as $cate):?>
-                                                    <li onclick="javascript:_ctrl.deprecated.pullDestData(this)">
-                                                        <span class="gwk-pin-dest-<?php echo $cate['spid'] ?>"> </span>
-                                                        <input type="checkbox" style="display: none;" name="filter_sports[]" value="<?php echo $cate['spid'] ?>" />
-                                                        <br />
-                                                        <span class="gwk-dest-title"><?php echo $cate['name'] ?></span>
-                                                    </li>
-                                                <?php endforeach; ?>
+                                                    <?php foreach($sport_cate as $cate):?>
+                                                        <li onclick="javascript:_ctrl.deprecated.pullDestData(this)">
+                                                            <span class="gwk-pin-dest-<?php echo $cate['spid'] ?>"> </span>
+                                                            <input type="checkbox" style="display: none;" name="filter_sports[]" value="<?php echo $cate['spid'] ?>" />
+                                                            <br />
+                                                            <span class="gwk-dest-title"><?php echo $cate['name'] ?></span>
+                                                        </li>
+                                                    <?php endforeach; ?>
 
-                                                <li onclick="javascript:_ctrl.deprecated.pullDestData(this)">
-                                                    <span class="gwk-pin-dest-all"> </span>
-                                                    <input type="checkbox" style="display: none;" name="filter_sports[]" value="all" />
-                                                    <br />
-                                                    全部
-                                                </li>
+                                                    <li onclick="javascript:_ctrl.deprecated.pullDestData(this)">
+                                                        <span class="gwk-pin-dest-all"> </span>
+                                                        <input type="checkbox" style="display: none;" name="filter_sports[]" value="all" />
+                                                        <br />
+                                                        全部
+                                                    </li>
                                                 <?php endif; ?>
 
                                                 <li onclick="javascript:_ctrl.toggle.togglePOIData('ski_resort', this);">
@@ -351,12 +276,8 @@
 <div class="modal fade" id="modal-poi" role="dialog" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header" style="background: lightgrey!important;">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel"></h4>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
+            <div class="modal-body" style="padding: 0!important;">
+                <div class="container-fluid" id="modal-poi-ctn" style="overflow-y: hidden;">
 
                 </div>
             </div>
@@ -364,6 +285,7 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div><!-- /.modal-content -->
+
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <?php
@@ -376,6 +298,7 @@
 <script src="<?=WWW_domian?>js/bootstrap.min.js"></script>
 
 <script src="<?=WWW_domian?>js/jquery.cookie.js"></script>
+<script src="<?=WWW_domian?>assets/raty/lib/jquery.raty.js"></script>
 <script src="<?=WWW_domian?>js/bootstrap3.typeahead.js"></script>
 <script src="<?=WWW_domian?>js/jquery.base64.js"></script>
 <script src="<?=WWW_domian?>js/Modernizr.js"></script>
