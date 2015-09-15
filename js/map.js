@@ -222,7 +222,7 @@ var GwkMapController = {
                             $('#modal-poi').modal('toggle');
                             $('body').removeClass('modal-open');
 
-                            $('#modal-poi-ctn').css('height', $(document).height() - 120);
+                            // $('#modal-poi-ctn').css('height', $(document).height() - 120);
 
                             $('.poi-rating').raty({ starType: 'i', score: 3 });
                         })
