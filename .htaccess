@@ -29,6 +29,7 @@ Allow from 96.235.164.136  #lin3
 Allow from 69.249.187.231 #daisy
 Allow from 72.86.173.49 #vicki
 Allow from 71.230.134.174 #sam zhang
+Allow from 128.4.59.5 #sam zhang's lab
 Allow from 68.82.182.252 #cao
 Allow from 69.249.38.235 #philly office
 Allow from 104.236.24.32 #wildkid.co

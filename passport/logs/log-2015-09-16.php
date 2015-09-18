@@ -1,0 +1,18 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2015-09-16 02:36:41 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2015-09-16 02:36:41 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2015-09-16 02:36:42 --> 404 Page Not Found --> favicon.ico
+ERROR - 2015-09-16 02:36:45 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2015-09-16 02:36:45 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2015-09-16 02:36:55 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2015-09-16 02:36:55 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2015-09-16 10:34:57 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2015-09-16 10:34:57 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2015-09-16 10:34:58 --> 404 Page Not Found --> favicon.ico
+ERROR - 2015-09-16 10:35:01 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2015-09-16 10:35:01 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2015-09-16 10:35:08 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2015-09-16 10:35:08 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2015-09-16 10:35:09 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 91
+ERROR - 2015-09-16 10:35:09 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 73
