@@ -207,7 +207,27 @@ var GwkMapController = {
                     });
 
                     if(_pin.hasOwnProperty('raw_data')) {
-                        $('#modal-poi').find('h4.modal-title').html(_pin.raw_data.name);
+						if(typeof _pin.raw_data.logo != 'undefined'){
+							  $('#modal-poi').find('h4.modal-title').html(_pin.raw_data.name);
+							   GwkMapController.GwkPoiInfobox.setOptions({ visible: false});
+							   
+							    $.get('//activity.gowildkid.com/user/ws/' + $.base64.encode(JSON.stringify({
+                                func : 'poi_single_view',
+                                type : 'org',
+                                id   : _pin.raw_data.id
+									})), function (_data) {
+									$('#modal-poi').find('div.modal-body>div').html(_data);
+
+									$('#modal-poi').modal('toggle');
+									$('body').removeClass('modal-open');
+
+									// $('#modal-poi-ctn').css('height', $(document).height() - 120);
+
+									$('.poi-rating').raty({ starType: 'i', score: 3 });
+								});
+						}
+						else{
+							      $('#modal-poi').find('h4.modal-title').html(_pin.raw_data.name);
                         // $('#modal-poi').find('div.modal-body>div').html(_pin.raw_data.name);
 
                         GwkMapController.GwkPoiInfobox.setOptions({ visible: false});
@@ -225,7 +245,9 @@ var GwkMapController = {
                             // $('#modal-poi-ctn').css('height', $(document).height() - 120);
 
                             $('.poi-rating').raty({ starType: 'i', score: 3 });
-                        })
+                        });
+						}
+                  
                     }
 
                     this._ibox.setLocation(_pin.getLocation());
@@ -394,7 +416,7 @@ var GwkMapController = {
                 $('input#toggleNP').val("1");
             }
         },
-
+	
         togglePOIData : function (_type, _node) {
             try {
                 var _state_node = $(_node).find('input.togglePoiState');
@@ -408,6 +430,7 @@ var GwkMapController = {
                 } else {
                     if(GwkMapController.GwkPOILayer.hasOwnProperty(_type)) {
                         GwkMapController.GwkPOILayer[_type].setOptions({visible: true});
+					
                     } else {
                         $('body').css('cursor', "wait");
                         $.get(
@@ -498,23 +521,29 @@ var GwkMapController = {
                 } else {
                     GwkMapController.GwkPOILayer[_type] = new Microsoft.Maps.EntityCollection({zIndex: 1002});
                     GwkMapController.map.entities.push(GwkMapController.GwkPOILayer[_type]);
+					
 
                     _locs = [];
                     for(var i=0; i<_data.length; i++) {
                         try {
+							
                             var _tmp_loc = _data[i];
-
+				
                             // if('ski_resort' == _type) {
+								
                                 var _pin = GwkMapController.pin.poi[_type](_tmp_loc);
+								
                                 GwkMapController.GwkPOILayer[_type].push(_pin);
 
                                 if(GwkMapController.enable_bound) {
                                     _locs.push(_pin.getLocation());
                                 }
                             // }
+							
 
                         } catch (e) { console.log(e); }
                     }
+					
 
                     if(GwkMapController.enable_bound && 0 < _data.length) {
                         if(1 < _locs.length) {
@@ -648,6 +677,7 @@ var GwkMapController = {
     pin : {
         poi : {
             ski_resort : function (_poi) {
+				
                 var _pin_loc = new Microsoft.Maps.Location(_poi.lat, _poi.lon);
                 var _pin = new Microsoft.Maps.Pushpin(_pin_loc, {
                     text: "",
@@ -661,6 +691,21 @@ var GwkMapController = {
 
                 return _pin;
             },
+			org : function (_poi) {
+				
+			var _pin_loc = new Microsoft.Maps.Location(_poi.lat, _poi.lon);
+			var _pin = new Microsoft.Maps.Pushpin(_pin_loc, {
+				text: "",
+				typeName: "gwk-pin-dest-ski",
+				title: _poi.resort_name
+			});
+			_pin.raw_data = _poi;
+			_pin.pin_type = 'poi';
+			_pin.HtmlContent = "<div class='box box-infobox'>" +
+				"<span class='gwk-infobx-poi-skiing'></span><span style='padding-left: 6px;'>" + _poi.name + "</span></div>";
+
+			return _pin;
+		},
         },
     },
 
@@ -761,3 +806,4 @@ $(document).ready(function() {
         });
     } catch(e) { console.log(e); }
 });
+

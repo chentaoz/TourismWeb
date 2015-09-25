@@ -16,3 +16,5 @@ ERROR - 2015-09-19 09:26:36 --> Severity: 8192  --> mysql_pconnect(): The mysql 
 ERROR - 2015-09-19 09:26:36 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 73
 ERROR - 2015-09-19 09:26:43 --> Severity: 8192  --> mysql_pconnect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 91
 ERROR - 2015-09-19 09:26:43 --> Severity: 8192  --> mysql_connect(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead /opt/dev_sites/wildkido_com/srqS4Y3/database/drivers/mysql/mysql_driver.php 73
+ERROR - 2015-09-19 21:51:47 --> Severity: Warning  --> mysql_result(): Unable to jump to row 0 on MySQL result index 63 /opt/dev_sites/wildkido_com/uc_client/lib/db.class.php 112
+ERROR - 2015-09-19 21:51:47 --> Severity: Warning  --> mysql_result(): Unable to jump to row 0 on MySQL result index 66 /opt/dev_sites/wildkido_com/uc_client/lib/db.class.php 112

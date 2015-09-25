@@ -173,6 +173,11 @@
                                                 <input type="hidden" name="toggleNP" id="toggleNP" value="0" />
                                                 国家公园
                                             </li>
+											<li onclick="javascript:_ctrl.toggle.toggleNationalOrg();" data-toggle="tooltip" data-placement="top" title="组织者">
+                                                <input type="hidden" name="organizer" id="organizer" class="ctr-btn-state" value="0" />
+                                                <input type="hidden" name="toggleOrg" id="toggleOrg" value="0" />
+                                                国家公园
+                                            </li>
                                             <li onclick="javascript:_ctrl.toggle.toggleDestPanel(this);" data-toggle="tooltip" data-placement="top" title="目的地">
                                                 <input type="hidden" name="state-dest" id="state-dest" class="ctr-btn-state btn-to-toggle" value="0" />
                                                 <i class="fa fa-2x fa-map-signs"></i>
@@ -240,7 +245,7 @@
                                     <div id="panel-content-act-recmd" class="panel-collapse collapse in">
                                         <div class="panel-body" >
                                             <ul id="list-group-act-recmd">
-
+												
                                             </ul>
                                         </div>
                                     </div>
@@ -258,6 +263,11 @@
                                                     <input type="hidden" value="0" class="togglePoiState" />
                                                     <i class="icon-gwk-poi-national-park" ></i>
                                                     <h5>国家公园</h5>
+                                                </li>
+												<li onclick="javascript:_ctrl.toggle.togglePOIData('org', this);">
+													<input type="hidden" value="0" class="togglePoiState" />
+                                                    <i class="icon-gwk-poi-national-park" ></i>
+                                                    <h5>活动组织者</h5>
                                                 </li>
 
 
