@@ -261,16 +261,14 @@
                                             <ul id="ul-poi">
                                                 <li onclick="javascript:_ctrl.toggle.toggleNationalParkData();">
                                                     <input type="hidden" value="0" class="togglePoiState" />
-                                                    <i class="icon-gwk-poi-national-park" ></i>
+                                                    <span class="gwk-pin-dest-national-park" ></span>
                                                     <h5>国家公园</h5>
                                                 </li>
 												<li onclick="javascript:_ctrl.toggle.togglePOIData('org', this);">
 													<input type="hidden" value="0" class="togglePoiState" />
-                                                    <i class="icon-gwk-poi-national-park" ></i>
-                                                    <h5>活动组织者</h5>
+                                                    <span class="gwk-pin-dest-org"> </span>
+                                                    <h5>组织者</h5>
                                                 </li>
-
-
                                             </ul>
                                         </div>
                                     </div>

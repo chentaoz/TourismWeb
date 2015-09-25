@@ -17,7 +17,7 @@ a[class^=icon-]:hover,a[class*=" icon-"]:hover {
 }
 
 a[class^=gwk-pin-dest-] {
-    background: url(/images/map_menu_icons/gwk-markers-70.png) no-repeat 0 0;
+    background: url(/images/map_menu_icons/icons2.png) no-repeat 0 0;
     background-size: 35px auto;
     width: 35px!important;
     height: 46px!important;
@@ -88,9 +88,14 @@ a.gwk-pin-dest-mypos {
     background-position: 0 0!important;
 }
 
+a.gwk-pin-dest-org {
+    background-position: 0 -736px!important;
+}
+
 /* panel icons */
 span[class^=gwk-pin-dest-] {
-    background: url(/images/map_menu_icons/gwk-markers-70.png) no-repeat 0 0;
+    /*background: url(/images/map_menu_icons/gwk-markers-70.png) no-repeat 0 0;*/
+    background: url(/images/map_menu_icons/icons2.png) no-repeat 0 0;
     /*background-size: 100% auto;*/
     width: 70px!important;
     height: 92px!important;
@@ -134,6 +139,14 @@ span.gwk-pin-dest-all {
     background-position: 0 -1196px!important;
 }
 
+span.gwk-pin-dest-national-park {
+    background-position: 0 -1380px!important;
+}
+
+span.gwk-pin-dest-org {
+    background-position: 0 -1472px!important;
+}
+
 span.gwk-pin-dest-48 {
     background-position: 0 -1012px!important;
 }
@@ -153,7 +166,7 @@ span.gwk-pin-dest-39 {
 
 /* infobox icons */
 span[class^=gwk-infobx-poi-] {
-    background: url("/images/map_menu_icons/gwk-infobox-70.png") no-repeat 0 0;
+    background: url("/images/map_menu_icons/icons2.png") no-repeat 0 0;
     /*background-size: 100% auto;*/
     width: 70px!important;
     height: 92px!important;
@@ -195,6 +208,10 @@ span.gwk-infobx-poi-running {
 
 span.gwk-infobx-poi-all {
     background-position: 0 -1196px!important;
+}
+
+span.gwk-infobx-poi-org {
+    background-position: 0 -1472px!important;
 }
 
 span.gwk-infobx-poi-photography {
